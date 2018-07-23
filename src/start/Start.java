@@ -1,14 +1,15 @@
 package start;
 
+import cyphers.Caesar;
 import common.Constants;
-import common.Helper;
 
 public class Start {
 
 	public static void main(String[] args) {
 		
-		System.out.println(Helper.getReversedString("TEST"));
-
+		Caesar c = new Caesar(Constants.ALPHABET_EN, 1);
+		System.out.println(c.encrypt("ABBA"));
+		System.out.println(c.decrypt("BCCB"));
 	}
 
 }

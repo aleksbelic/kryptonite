@@ -9,11 +9,11 @@ public class Helper {
 	 * @return reversed string
 	 */
 	public static String getReversedString(String s) {
-		String reversed = "";
+		StringBuilder sb = new StringBuilder();
 		for (int i = s.length() - 1; i >= 0; i--) {
-			reversed += s.charAt(i);
+			sb.append(s.charAt(i));
 		}
-		return reversed;
+		return sb.toString();
 	}
 
 }
