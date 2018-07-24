@@ -143,4 +143,16 @@ public class CaesarCipher {
 		}
 	}
 
+	/**
+	 * Prints decrypted string for every possible two-key combination in alphabet.
+	 * 
+	 * @param s, string to decrypt
+	 */
+	public void eyeballTwoKeys(String s) {
+		for (int i = 1; i <= this.alphabet.length(); i++) {
+			for (int j = 1; j <= this.alphabet.length(); j++) {
+				System.out.println(this.decryptTwoKeys(s, i, j));
+			}
+		}
+	}
 }

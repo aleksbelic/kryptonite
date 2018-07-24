@@ -8,7 +8,8 @@ public class Start {
 	public static void main(String[] args) {
 		
 		CaesarCipher cc = new CaesarCipher(Constants.ALPHABET_EN);
-		cc.eyeball("Knwxy Qjlnts!");
+		System.out.println(cc.decryptTwoKeys("Some text!", 15, 20));
+		cc.eyeballTwoKeys("Duxk zpde!");
 		
 	}
 
