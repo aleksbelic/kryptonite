@@ -1,5 +1,10 @@
 package common;
 
+/**
+ * Constants class.
+ * 
+ * @author Aleksandar Belic <aleks.belic@gmail.com>
+ */
 public class Constants {
 
 	public static final String NUMBERS = "1234567890";

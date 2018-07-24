@@ -1,5 +1,10 @@
 package common;
 
+/**
+ * Helper class.
+ * 
+ * @author Aleksandar Belic <aleks.belic@gmail.com>
+ */
 public class Helper {
 
 	/**
