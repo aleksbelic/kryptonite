@@ -10,6 +10,7 @@ public class CaesarCipher {
 
 	/**
 	 * Encrypts given string for given key.
+	 * 
 	 * @param s, string to encrypt
 	 * @param key, key for creating shifted alphabet
 	 * @return encrypted string
@@ -35,6 +36,7 @@ public class CaesarCipher {
 
 	/**
 	 * Decrypts given string for given key.
+	 * 
 	 * @param s, string to decrypt
 	 * @param key, key for creating shifted alphabet
 	 * @return decrypted string
@@ -57,12 +59,14 @@ public class CaesarCipher {
 		}
 		return sb.toString();
 	}
-	
+
 	/**
-	 * Encrypts given string with two given key, 1st for every even char and 2nd for every odd char.
+	 * Encrypts given string with two given key, 1st for every even char and 2nd for
+	 * every odd char.
+	 * 
 	 * @param s, string to encrypt
 	 * @param key1, key for creating shifted alphabet for every even char
- 	 * @param key2, key for creating shifted alphabet for every odd char
+	 * @param key2, key for creating shifted alphabet for every odd char
 	 * @return encrypted string
 	 */
 	public String encryptTwoKeys(String s, int key1, int key2) {
@@ -91,12 +95,14 @@ public class CaesarCipher {
 		}
 		return sb.toString();
 	}
-	
+
 	/**
-	 * Decrypts given string with two given key, 1st for every even char and 2nd for every odd char.
+	 * Decrypts given string with two given key, 1st for every even char and 2nd for
+	 * every odd char.
+	 * 
 	 * @param s, string to decrypt
 	 * @param key1, key for creating shifted alphabet for every even char
- 	 * @param key2, key for creating shifted alphabet for every odd char
+	 * @param key2, key for creating shifted alphabet for every odd char
 	 * @return decrypted string
 	 */
 	public String decryptTwoKeys(String s, int key1, int key2) {
@@ -125,5 +131,16 @@ public class CaesarCipher {
 		}
 		return sb.toString();
 	}
-	
+
+	/**
+	 * Prints decrypted string for every possible key in alphabet.
+	 * 
+	 * @param s, string to decrypt
+	 */
+	public void eyeball(String s) {
+		for (int i = 1; i <= this.alphabet.length(); i++) {
+			System.out.println(this.decrypt(s, i));
+		}
+	}
+
 }
