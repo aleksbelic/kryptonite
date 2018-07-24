@@ -19,9 +19,13 @@ public class CaesarCipher {
 		String shiftedAlphabet = this.alphabet.substring(key) + this.alphabet.substring(0, key);
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < s.length(); i++) {
-			int charPositionInAlphabet = this.alphabet.indexOf(s.charAt(i));
-			if (charPositionInAlphabet != -1) { // if char found
-				sb.append(shiftedAlphabet.charAt(charPositionInAlphabet));
+			int charPositionInAlphabet = this.alphabet.indexOf(Character.toUpperCase(s.charAt(i)));
+			if (charPositionInAlphabet != -1) {
+				if (Character.isUpperCase(s.charAt(i))) {
+					sb.append(shiftedAlphabet.charAt(charPositionInAlphabet));
+				} else {
+					sb.append(Character.toLowerCase(shiftedAlphabet.charAt(charPositionInAlphabet)));
+				}
 			} else {
 				sb.append(s.charAt(i));
 			}
@@ -40,14 +44,18 @@ public class CaesarCipher {
 		String shiftedAlphabet = this.alphabet.substring(key) + this.alphabet.substring(0, key);
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < s.length(); i++) {
-			int charPositionInShiftedAlphabet = shiftedAlphabet.indexOf(s.charAt(i));
-			if (charPositionInShiftedAlphabet != -1) { // if char found
-				sb.append(this.alphabet.charAt(charPositionInShiftedAlphabet));
+			int charPositionInShiftedAlphabet = shiftedAlphabet.indexOf(Character.toUpperCase(s.charAt(i)));
+			if (charPositionInShiftedAlphabet != -1) {
+				if (Character.isUpperCase(s.charAt(i))) {
+					sb.append(this.alphabet.charAt(charPositionInShiftedAlphabet));
+				} else {
+					sb.append(Character.toLowerCase(this.alphabet.charAt(charPositionInShiftedAlphabet)));
+				}
 			} else {
 				sb.append(s.charAt(i));
 			}
 		}
 		return sb.toString();
 	}
-
+	
 }
