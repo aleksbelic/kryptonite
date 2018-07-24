@@ -8,8 +8,8 @@ public class Start {
 	public static void main(String[] args) {
 		
 		CaesarCipher c = new CaesarCipher(Constants.ALPHABET_EN);
-		System.out.println(c.encrypt("First Legion!", 23));
-		System.out.println(c.decrypt("Cfopq Ibdflk!", 23));
+		System.out.println(c.encryptTwoKeys("First Legion!", 23, 17));
+		System.out.println(c.decryptTwoKeys("Czojq Ivdzle!", 23, 17));
 	}
 
 }
