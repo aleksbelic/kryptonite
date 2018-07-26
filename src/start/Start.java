@@ -1,7 +1,7 @@
 package start;
 
-import cyphers.CaesarCipher;
-import common.Constants;
+import cyphers.*;
+import common.*;
 
 /**
  * Start class.
@@ -12,9 +12,8 @@ public class Start {
 
 	public static void main(String[] args) {
 		
-		CaesarCipher cc = new CaesarCipher(Constants.ALPHABET_EN);
-		System.out.println(cc.decryptTwoKeys("Some text!", 15, 20));
-		cc.eyeballTwoKeys("Duxk zpde!");
+		System.out.println(Stats.charCount("lollapalooza"));
+		System.out.println(Stats.charFrequency("lollapalooza"));
 		
 	}
 
