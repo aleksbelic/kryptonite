@@ -1,5 +1,10 @@
 package cyphers;
 
+/**
+ * CeaserCipher class.
+ * 
+ * @author Aleksandar Belic <aleks.belic@gmail.com>
+ */
 public class CaesarCipher {
 
 	private String alphabet;
@@ -11,8 +16,8 @@ public class CaesarCipher {
 	/**
 	 * Encrypts given string for given key.
 	 * 
-	 * @param s, string to encrypt
-	 * @param key, key for creating shifted alphabet
+	 * @param s   string to encrypt
+	 * @param key key for creating shifted alphabet
 	 * @return encrypted string
 	 */
 	public String encrypt(String s, int key) {
@@ -37,8 +42,8 @@ public class CaesarCipher {
 	/**
 	 * Decrypts given string for given key.
 	 * 
-	 * @param s, string to decrypt
-	 * @param key, key for creating shifted alphabet
+	 * @param s   string to decrypt
+	 * @param key key for creating shifted alphabet
 	 * @return decrypted string
 	 */
 	public String decrypt(String s, int key) {
@@ -64,9 +69,9 @@ public class CaesarCipher {
 	 * Encrypts given string with two given key, 1st for every even char and 2nd for
 	 * every odd char.
 	 * 
-	 * @param s, string to encrypt
-	 * @param key1, key for creating shifted alphabet for every even char
-	 * @param key2, key for creating shifted alphabet for every odd char
+	 * @param s    string to encrypt
+	 * @param key1 key for creating shifted alphabet for every even char
+	 * @param key2 key for creating shifted alphabet for every odd char
 	 * @return encrypted string
 	 */
 	public String encryptTwoKeys(String s, int key1, int key2) {
@@ -100,9 +105,9 @@ public class CaesarCipher {
 	 * Decrypts given string with two given key, 1st for every even char and 2nd for
 	 * every odd char.
 	 * 
-	 * @param s, string to decrypt
-	 * @param key1, key for creating shifted alphabet for every even char
-	 * @param key2, key for creating shifted alphabet for every odd char
+	 * @param s    string to decrypt
+	 * @param key1 key for creating shifted alphabet for every even char
+	 * @param key2 key for creating shifted alphabet for every odd char
 	 * @return decrypted string
 	 */
 	public String decryptTwoKeys(String s, int key1, int key2) {
@@ -135,11 +140,24 @@ public class CaesarCipher {
 	/**
 	 * Prints decrypted string for every possible key in alphabet.
 	 * 
-	 * @param s, string to decrypt
+	 * @param s string to decrypt
 	 */
 	public void eyeball(String s) {
 		for (int i = 1; i <= this.alphabet.length(); i++) {
 			System.out.println(this.decrypt(s, i));
+		}
+	}
+
+	/**
+	 * Prints decrypted string for every possible two-key combination in alphabet.
+	 * 
+	 * @param s string to decrypt
+	 */
+	public void eyeballTwoKeys(String s) {
+		for (int i = 1; i <= this.alphabet.length(); i++) {
+			for (int j = 1; j <= this.alphabet.length(); j++) {
+				System.out.println(this.decryptTwoKeys(s, i, j));
+			}
 		}
 	}
 
