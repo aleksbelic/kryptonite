@@ -1,1 +1,5 @@
 # kryptonite
+
+Ciphers:
+- Caesar
+- Scytale
