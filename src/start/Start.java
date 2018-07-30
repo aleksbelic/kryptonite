@@ -1,7 +1,6 @@
 package start;
 
 import cyphers.*;
-import common.*;
 
 /**
  * Start class.
@@ -12,9 +11,9 @@ public class Start {
 
 	public static void main(String[] args) {
 		
-		System.out.println(Stats.charCount("lollapalooza"));
-		System.out.println(Stats.charFrequency("lollapalooza"));
-		
+		ScytaleCipher sc = new ScytaleCipher(5);
+		System.out.println(sc.encrypt("IamhurtverybadlyHELP"));
+
 	}
 
 }
