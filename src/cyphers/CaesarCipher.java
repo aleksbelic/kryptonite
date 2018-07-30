@@ -14,7 +14,7 @@ public class CaesarCipher {
 	}
 
 	/**
-	 * Encrypts given string for given key.
+	 * Encrypts given string with a given key.
 	 * 
 	 * @param s   string to encrypt
 	 * @param key key for creating shifted alphabet
@@ -40,7 +40,7 @@ public class CaesarCipher {
 	}
 
 	/**
-	 * Decrypts given string for given key.
+	 * Decrypts given string with a given key.
 	 * 
 	 * @param s   string to decrypt
 	 * @param key key for creating shifted alphabet
@@ -66,8 +66,8 @@ public class CaesarCipher {
 	}
 
 	/**
-	 * Encrypts given string with two given key, 1st for every even char and 2nd for
-	 * every odd char.
+	 * Encrypts given string with two given key, 1st for every even and 2nd for
+	 * every odd char position.
 	 * 
 	 * @param s    string to encrypt
 	 * @param key1 key for creating shifted alphabet for every even char
@@ -102,8 +102,8 @@ public class CaesarCipher {
 	}
 
 	/**
-	 * Decrypts given string with two given key, 1st for every even char and 2nd for
-	 * every odd char.
+	 * Decrypts given string with two given key, 1st for every even and 2nd for
+	 * every odd char position.
 	 * 
 	 * @param s    string to decrypt
 	 * @param key1 key for creating shifted alphabet for every even char
@@ -138,7 +138,7 @@ public class CaesarCipher {
 	}
 
 	/**
-	 * Prints decrypted string for every possible key in alphabet.
+	 * Prints decrypted string with every key in the alphabet.
 	 * 
 	 * @param s string to decrypt
 	 */
@@ -149,7 +149,7 @@ public class CaesarCipher {
 	}
 
 	/**
-	 * Prints decrypted string for every possible two-key combination in alphabet.
+	 * Prints decrypted string with every two-key combination in the alphabet.
 	 * 
 	 * @param s string to decrypt
 	 */
