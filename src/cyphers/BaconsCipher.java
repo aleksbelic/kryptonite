@@ -67,18 +67,19 @@ public class BaconsCipher {
 	 * Encrypts given string.
 	 * 
 	 * @param s string to encrypt
+	 * @param misleadingText visible text in which we are going to hide our real message
 	 * @return encrypted string
 	 */
-	public String encrypt(String s) {
+	public String encrypt(String s, String misleadingText) {
 		String substituteString = "";
 		String encryptedString = "";
 		for (int i = 0; i < s.length(); i++) {
 			substituteString = alphabetMap.get(Character.toLowerCase(s.charAt(i)));
 			if (substituteString != null) {
-				encryptedString += alphabetMap.get(Character.toLowerCase(s.charAt(i)));
-			}
-			if (i != (s.length() - 1)) {
-				encryptedString += " ";
+				encryptedString += substituteString;
+				if (i != (s.length() - 1)) {
+					encryptedString += " ";
+				}
 			}
 		}
 		return encryptedString;
