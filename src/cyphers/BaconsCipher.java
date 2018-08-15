@@ -71,17 +71,39 @@ public class BaconsCipher {
 	 * @return encrypted string
 	 */
 	public String encrypt(String s, String misleadingText) {
+		
+		// TODO
+		// check if misleading text is shorter than substitute string!
+		
+		// original Bacon's cipher uses bold & regular letters, we'll be using uppercase & lowercase letters respectively
+		s = s.toLowerCase();
+		misleadingText = misleadingText.toLowerCase();
+		
+		String substituteForChar = "";
 		String substituteString = "";
 		String encryptedString = "";
+		
 		for (int i = 0; i < s.length(); i++) {
-			substituteString = alphabetMap.get(Character.toLowerCase(s.charAt(i)));
-			if (substituteString != null) {
-				encryptedString += substituteString;
-				if (i != (s.length() - 1)) {
-					encryptedString += " ";
-				}
+			substituteForChar = alphabetMap.get(s.charAt(i));
+			if (substituteForChar != null) {
+				substituteString += substituteForChar;
 			}
 		}
+		
+		for (int i = 0, j = 0; i < substituteString.length(); i++, j++) {
+			if (!Character.isLetter(misleadingText.charAt(j % misleadingText.length()))) {
+				while (!Character.isLetter(misleadingText.charAt(j % misleadingText.length()))) {
+					encryptedString += misleadingText.charAt(j % misleadingText.length());
+					j++;
+				}
+			}
+			if (substituteString.charAt(i) == 'a') {
+				encryptedString += misleadingText.charAt(j % misleadingText.length());
+			} else if (substituteString.charAt(i) == 'b') {
+				encryptedString += Character.toUpperCase(misleadingText.charAt(j % misleadingText.length()));
+			}
+		}
+		
 		return encryptedString;
 	}
 
