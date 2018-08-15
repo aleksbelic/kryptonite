@@ -16,8 +16,8 @@ class BaconsCipherTest {
 
 	@Test
 	void testEncryption() {
-		//assertEquals(bc1.encrypt("Just testing version 1", "the quick brown fox jumps over the lazy dog"), "---");
-		//assertEquals(bc2.encrypt("Just testing version 2", "the quick brown fox jumps over the lazy dog"), "---");
+		assertEquals(bc1.encrypt("Just IV", "This is a test message with bold for B"), "tHis iS a tEST mesSAge WitH bolD foR B");
+		assertEquals(bc2.encrypt("Test It", "This is a test message with bold for B"), "ThiS Is a TesT meSsAge WItH bolD foR B");
 	}
 
 	@Test
