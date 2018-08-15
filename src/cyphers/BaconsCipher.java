@@ -66,30 +66,44 @@ public class BaconsCipher {
 	/**
 	 * Encrypts given string.
 	 * 
-	 * @param s string to encrypt
-	 * @param misleadingText visible text in which we are going to hide our real message
+	 * @param s              string to encrypt
+	 * @param misleadingText visible text in which we are going to hide our real
+	 *                       message. It should be 5 times longer than the original
+	 *                       message.
 	 * @return encrypted string
 	 */
 	public String encrypt(String s, String misleadingText) {
-		
-		// TODO
-		// check if misleading text is shorter than substitute string!
-		
-		// original Bacon's cipher uses bold & regular letters, we'll be using uppercase & lowercase letters respectively
+
+		// checking misleading text value
+		if (misleadingText.length() == 0) {
+			throw new IllegalArgumentException("ERROR: misleading text cannot be an empty string.");
+		} else {
+			int letterCounter = 0;
+			for (char ch : misleadingText.toCharArray()) {
+				if (Character.isLetter(ch)) {
+					letterCounter++;
+				}
+			}
+			if (letterCounter == 0) {
+				throw new IllegalArgumentException("ERROR: misleading text needs at least one letter.");
+			}
+		}
+
+		// original Bacon's cipher uses bold & regular letters, we'll be using upper case & lower case letters respectively
 		s = s.toLowerCase();
 		misleadingText = misleadingText.toLowerCase();
-		
+
 		String substituteForChar = "";
 		String substituteString = "";
 		String encryptedString = "";
-		
+
 		for (int i = 0; i < s.length(); i++) {
 			substituteForChar = alphabetMap.get(s.charAt(i));
 			if (substituteForChar != null) {
 				substituteString += substituteForChar;
 			}
 		}
-		
+
 		for (int i = 0, j = 0; i < substituteString.length(); i++, j++) {
 			if (!Character.isLetter(misleadingText.charAt(j % misleadingText.length()))) {
 				while (!Character.isLetter(misleadingText.charAt(j % misleadingText.length()))) {
@@ -103,7 +117,7 @@ public class BaconsCipher {
 				encryptedString += Character.toUpperCase(misleadingText.charAt(j % misleadingText.length()));
 			}
 		}
-		
+
 		return encryptedString;
 	}
 

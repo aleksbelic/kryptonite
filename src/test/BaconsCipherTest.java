@@ -25,4 +25,17 @@ class BaconsCipherTest {
 
 	}
 
+	@Test
+	void testCipherExceptions() {
+		assertThrows(IllegalArgumentException.class, ()->{
+			bc1.encrypt("Testing", "");
+        });
+		assertThrows(IllegalArgumentException.class, ()->{
+			bc1.encrypt("Testing", " ");
+        });
+		assertThrows(IllegalArgumentException.class, ()->{
+			bc1.encrypt("Testing", "1");
+        });
+	}
+
 }
