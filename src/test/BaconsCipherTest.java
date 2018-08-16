@@ -13,12 +13,6 @@ class BaconsCipherTest {
 
 	BaconsCipher bc1 = new BaconsCipher("1");
 	BaconsCipher bc2 = new BaconsCipher("2");
-
-	@Test
-	void testEncryption() {
-		assertEquals(bc1.encrypt("Just IV", "This is a test message with bold for B"), "tHis iS a tEST mesSAge WitH bolD foR B");
-		assertEquals(bc2.encrypt("Test It", "This is a test message with bold for B"), "ThiS Is a TesT meSsAge WItH bolD foR B");
-	}
 	
 	@Test
 	void testEncryptionToAB() {
@@ -31,10 +25,17 @@ class BaconsCipherTest {
 		assertEquals(bc1.decryptAB("abaaabaabbbaaabbaabaabaaabaabb"), "iustiu");
 		assertEquals(bc2.decryptAB("baabbaabaabaababaabbabaaabaabb"), "testit");
 	}
+	
+	@Test
+	void testEncryption() {
+		assertEquals(bc1.encrypt("Just IV", "This is a test message with bold for B"), "tHis iS a tEST mesSAge WitH bolD foR B");
+		assertEquals(bc2.encrypt("Test It", "This is a test message with bold for B"), "ThiS Is a TesT meSsAge WItH bolD foR B");
+	}
 
 	@Test
 	void testDecryption() {
-		// TODO
+		assertEquals(bc1.decrypt("tHis iS a tEST mesSAge WitH bolD foR B"), "iustiu");
+		assertEquals(bc2.decrypt("ThiS Is a TesT meSsAge WItH bolD foR B"), "testit");
 	}
 
 	@Test

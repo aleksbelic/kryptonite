@@ -159,9 +159,20 @@ public class BaconsCipher {
 		return decryptedMessage;
 	}
 
-	// TODO
-	public String decrypt(String s) {
-		return "";
+	/**
+	 * Decrypts given string.
+	 * 
+	 * @param s string to decrypt
+	 * @return encrypted string
+	 */
+	public String decrypt(String encryptedMessage) {
+		String messageEncryptedToAB = "";
+		for (int i = 0; i < encryptedMessage.length(); i++) {
+			if (Character.isLetter(encryptedMessage.charAt(i))) {
+				messageEncryptedToAB += (Character.isLowerCase(encryptedMessage.charAt(i))) ? 'a' : 'b';
+			}
+		}
+		return decryptAB(messageEncryptedToAB);
 	}
 
 }
