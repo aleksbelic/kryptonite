@@ -93,16 +93,8 @@ public class BaconsCipher {
 		s = s.toLowerCase();
 		misleadingText = misleadingText.toLowerCase();
 
-		String substituteForChar = "";
-		String substituteString = "";
+		String substituteString = this.encryptToAB(s);
 		String encryptedString = "";
-
-		for (int i = 0; i < s.length(); i++) {
-			substituteForChar = alphabetMap.get(s.charAt(i));
-			if (substituteForChar != null) {
-				substituteString += substituteForChar;
-			}
-		}
 
 		for (int i = 0, j = 0; i < substituteString.length(); i++, j++) {
 			if (!Character.isLetter(misleadingText.charAt(j % misleadingText.length()))) {
@@ -119,6 +111,57 @@ public class BaconsCipher {
 		}
 
 		return encryptedString;
+	}
+
+	/**
+	 * Encrypts message with corresponding As and Bs.
+	 * 
+	 * @param messageToEncrypt string to encrypt
+	 * @return encrypted message
+	 */
+	public String encryptToAB(String messageToEncrypt) {
+		messageToEncrypt = messageToEncrypt.toLowerCase();
+		String substituteForChar = "";
+		String messageEncryptedToAB = "";
+		for (int i = 0; i < messageToEncrypt.length(); i++) {
+			substituteForChar = alphabetMap.get(messageToEncrypt.charAt(i));
+			if (substituteForChar != null) {
+				messageEncryptedToAB += substituteForChar;
+			}
+		}
+		return messageEncryptedToAB;
+	}
+
+	/**
+	 * Decrypts message encrypted with As and Bs.
+	 * 
+	 * @param messageEncryptedToAB string to decrypt
+	 * @return decrypted message
+	 */
+	public String decryptAB(String messageEncryptedToAB) {
+
+		// validating encrypted AB message
+		if (messageEncryptedToAB.length() % 5 != 0) {
+			throw new IllegalArgumentException("ERROR: encrypted message is corruped, length not divisible by 5.");
+		}
+
+		String substringAB = "";
+		String decryptedMessage = "";
+		for (int i = 0; i < messageEncryptedToAB.length(); i += 5) {
+			substringAB = messageEncryptedToAB.substring(i, i + 5);
+			for (Object alphabetMapKey : alphabetMap.keySet()) {
+				if (alphabetMap.get(alphabetMapKey).equals(substringAB)) {
+					decryptedMessage += alphabetMapKey;
+					break;
+				}
+			}
+		}
+		return decryptedMessage;
+	}
+
+	// TODO
+	public String decrypt(String s) {
+		return "";
 	}
 
 }
