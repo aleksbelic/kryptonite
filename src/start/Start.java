@@ -12,6 +12,7 @@ public class Start {
 	public static void main(String[] args) {
 		
 		VigenereCipher vc = new VigenereCipher();
+		System.out.println(vc.encrypt("ATTACK AT DAWN", "LEMON"));
 
 	}
 
