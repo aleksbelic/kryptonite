@@ -13,6 +13,7 @@ public class Start {
 		
 		VigenereCipher vc = new VigenereCipher();
 		System.out.println(vc.encrypt("ATTACK AT DAWN", "LEMON"));
+		System.out.println(vc.decrypt("LXFOPV EF RNHR", "LEMON"));
 
 	}
 

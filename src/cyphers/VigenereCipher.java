@@ -46,6 +46,7 @@ public class VigenereCipher {
 	 * @return encrypted string
 	 */
 	public String encrypt(String s, String keyword) {
+		keyword = keyword.toUpperCase();
 		String encryptedString = "";
 		String shiftedAlphabet = "";
 		char currentChar;
@@ -57,8 +58,7 @@ public class VigenereCipher {
 			if (alphabet.indexOf(currentChar) == -1) {
 				encryptedString += currentChar;
 				j--;
-			}
-			else {
+			} else {
 				shiftedAlphabet = tabulaRecta.get(keyword.charAt(keywordCounter));
 				currentCharPositionInAlphabet = alphabet.indexOf(currentChar);
 				encryptedString += shiftedAlphabet.charAt(currentCharPositionInAlphabet);
@@ -67,4 +67,32 @@ public class VigenereCipher {
 		return encryptedString;
 	}
 
+	/**
+	 * Decrypts given string using specified keyword.
+	 * 
+	 * @param s       string to decrypt
+	 * @param keyword phrase to use in decryption process
+	 * @return decrypted string
+	 */
+	public String decrypt(String s, String keyword) {
+		keyword = keyword.toUpperCase();
+		String decryptedString = "";
+		String shiftedAlphabet = "";
+		char currentChar;
+		int currentCharPositionInAlphabet;
+		int keywordCounter;
+		for (int i = 0, j = 0; i < s.length(); i++, j++) {
+			keywordCounter = j % keyword.length();
+			currentChar = Character.toUpperCase(s.charAt(i));
+			if (alphabet.indexOf(currentChar) == -1) {
+				decryptedString += currentChar;
+				j--;
+			} else {
+				shiftedAlphabet = tabulaRecta.get(keyword.charAt(keywordCounter));
+				currentCharPositionInAlphabet = shiftedAlphabet.indexOf(currentChar);
+				decryptedString += alphabet.charAt(currentCharPositionInAlphabet);
+			}
+		}
+		return decryptedString;
+	}
 }
