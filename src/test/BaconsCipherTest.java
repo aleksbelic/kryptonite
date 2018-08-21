@@ -49,7 +49,7 @@ class BaconsCipherTest {
 		assertThrows(IllegalArgumentException.class, ()->{ // no letters
 			bc1.encrypt("Testing", "1");
         });
-		assertThrows(IllegalArgumentException.class, ()->{ // enctypted AB message length not divisible by 5
+		assertThrows(IllegalArgumentException.class, ()->{ // encrypted AB message length not divisible by 5
 			bc1.decryptAB("aaaaaa"); // e.g. length = 6
         });
 	}

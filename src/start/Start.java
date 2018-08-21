@@ -11,8 +11,10 @@ public class Start {
 
 	public static void main(String[] args) {
 		
-		BaconsCipher bc = new BaconsCipher("2");
-		System.out.println(bc.encrypt("Testing", "the quick brown fox jumps over the lazy dog"));
+		VigenereCipher vc = new VigenereCipher();
+		System.out.println(vc.encrypt("ATTACK AT DAWN", "LEMON"));
+		System.out.println(vc.decrypt("LXFOPV EF RNHR", "LEMON"));
+
 	}
 
 }
