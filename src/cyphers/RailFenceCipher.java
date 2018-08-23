@@ -1,8 +1,10 @@
 package cyphers;
 
+import java.util.Arrays;
+
 /**
  * Rail Fence Cipher class.<br>
- * Example for 3 rails:<br>
+ * Example for 3 rails and no whitespace in cipher text:<br>
  * <ul>
  * <li>plaint text: WE ARE DISCOVERED FLEE AT ONCE</li>
  * <li>cipher text: WECRLTEERDSOEEFEAOCAIVDEN</li>
@@ -18,10 +20,16 @@ public class RailFenceCipher {
 		this.railCount = railCount;
 	}
 
-	public String encrypt(String plainText) {
-		String cipherText = "";
-
-		return cipherText;
+	public String encrypt(String plainText, boolean encryptWhitespace) {
+		if (!encryptWhitespace) {
+			plainText = plainText.replaceAll("\\s+","");
+		}
+		String[] cipherTextRails = new String[this.railCount];
+		Arrays.fill(cipherTextRails, "");
+		for (int i = 0; i < plainText.length(); i++) {
+			cipherTextRails[i % this.railCount] += plainText.charAt(i);
+		}
+		return String.join("", cipherTextRails);
 	}
 
 }
