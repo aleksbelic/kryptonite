@@ -2,7 +2,8 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import cyphers.ScytaleCipher;
+
+import ciphers.ScytaleCipher;
 
 /**
  * ScytaleCipherTest class.

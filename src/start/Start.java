@@ -1,6 +1,6 @@
 package start;
 
-import cyphers.*;
+import ciphers.*;
 
 /**
  * Start class.

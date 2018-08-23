@@ -1,4 +1,4 @@
-package cyphers;
+package ciphers;
 
 import java.util.Arrays;
 
