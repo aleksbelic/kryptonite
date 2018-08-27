@@ -11,9 +11,9 @@ public class Start {
 
 	public static void main(String[] args) {
 		
-		RailFenceCipher rfc = new RailFenceCipher(3);
-		System.out.println(rfc.encrypt("WE ARE DISCOVERED FLEE AT ONCE", false));
-
+		RailFenceCipher rfc = new RailFenceCipher(2);
+		System.out.println(rfc.encrypt("aca je najbolji", true));
+		System.out.println(rfc.decrypt("aaj ablic enjoj"));
 	}
 
 }
