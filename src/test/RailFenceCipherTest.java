@@ -32,7 +32,15 @@ public class RailFenceCipherTest {
 	
 	@Test
 	void testDecryption() {
-		
+		assertEquals(rfc0.decrypt("WAEICVRDLETNEERDSOEEFEAOC"), "WEAREDISCOVEREDFLEEATONCE");
+		assertEquals(rfc1.decrypt("WEAREDISCOVEREDFLEEATONCE"), "WEAREDISCOVEREDFLEEATONCE");
+		assertEquals(rfc2.decrypt("WAEICVRDLETNEERDSOEEFEAOC"), "WEAREDISCOVEREDFLEEATONCE");
+		assertEquals(rfc3.decrypt("WRIORFEOEEESVELANADCEDETC"), "WEAREDISCOVEREDFLEEATONCE");
+
+		assertEquals(rfc0.decrypt("W R ICVRDFE TOCEAEDSOEE LEA NE"), "WE ARE DISCOVERED FLEE AT ONCE");
+		assertEquals(rfc1.decrypt("WE ARE DISCOVERED FLEE AT ONCE"), "WE ARE DISCOVERED FLEE AT ONCE");
+		assertEquals(rfc2.decrypt("W R ICVRDFE TOCEAEDSOEE LEA NE"), "WE ARE DISCOVERED FLEE AT ONCE");
+		assertEquals(rfc3.decrypt("WA SVEFETNERDCEDL  C EIOR EAOE"), "WE ARE DISCOVERED FLEE AT ONCE");
 	}
 
 }

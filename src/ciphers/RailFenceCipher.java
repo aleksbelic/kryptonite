@@ -28,8 +28,8 @@ public class RailFenceCipher {
 	 * Encrypts plaintext using Reil Fence Cipher.
 	 * 
 	 * @param plaintext text to encrypt
-	 * @param encryptWhitespace should whitespace also be included in cipertext
-	 * @return encrypted ciphertext
+	 * @param encryptWhitespace should whitespace also be included in ciphertext
+	 * @return ciphertext
 	 */
 	public String encrypt(String plaintext, boolean encryptWhitespace) {
 		if (!encryptWhitespace) {
@@ -52,16 +52,27 @@ public class RailFenceCipher {
 	public String decrypt(String ciphertext) {
 
 		String plaintext = "";
-		/*
-		String[] ciphertextRails = new String[this.railCount];
-		Arrays.fill(ciphertextRails, "");
-		for (int i = 0; i < ciphertext.length(); i++) {
-			ciphertextRails[i % this.railCount] += ciphertext.charAt(i);
-		}
-		System.out.println(ciphertextRails[0]);
-		System.out.println(ciphertextRails[1]);
-		*/
 		
+		String[] ciphertextRails = new String[this.railCount];
+		String cipherTextTemp = ciphertext;
+		int railCountTemp = this.railCount;
+		
+		Arrays.fill(ciphertextRails, "");
+		for (int i = 0; i < this.railCount; i++) {
+			int ciphertextRailsLength = (cipherTextTemp.length() % railCountTemp == 0) ? cipherTextTemp.length() / railCountTemp : (cipherTextTemp.length() / railCountTemp) + 1;
+			ciphertextRails[i] = cipherTextTemp.substring(0, ciphertextRailsLength);
+			cipherTextTemp = cipherTextTemp.substring(ciphertextRailsLength);
+			railCountTemp--;
+		}
+		
+		for (int i = 0; i < ciphertextRails[0].length(); i++) { // ciphertextRails[0] is always the longest
+			for (int j = 0; j < ciphertextRails.length; j++) {
+				if (plaintext.length() == ciphertext.length()) {
+					return plaintext;
+				}
+				plaintext += ciphertextRails[j].charAt(i);
+			}
+		}
 		return plaintext;
 	}
 
