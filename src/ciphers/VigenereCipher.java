@@ -1,4 +1,4 @@
-package cyphers;
+package ciphers;
 
 import java.util.HashMap;
 import common.Constants;
@@ -7,7 +7,6 @@ import common.Constants;
  * VigenereCipher class.
  * 
  * @author Aleksandar.Belic <aleks.belic@gmail.com>
- *
  */
 public class VigenereCipher {
 
@@ -41,20 +40,20 @@ public class VigenereCipher {
 	/**
 	 * Encrypts given string using specified keyword.
 	 * 
-	 * @param s       string to encrypt
+	 * @param plaintext string to encrypt
 	 * @param keyword phrase to use in encryption process
 	 * @return encrypted string
 	 */
-	public String encrypt(String s, String keyword) {
+	public String encrypt(String plaintext, String keyword) {
 		keyword = keyword.toUpperCase();
 		String encryptedString = "";
 		String shiftedAlphabet = "";
 		char currentChar;
 		int currentCharPositionInAlphabet;
 		int keywordCounter;
-		for (int i = 0, j = 0; i < s.length(); i++, j++) {
+		for (int i = 0, j = 0; i < plaintext.length(); i++, j++) {
 			keywordCounter = j % keyword.length();
-			currentChar = Character.toUpperCase(s.charAt(i));
+			currentChar = Character.toUpperCase(plaintext.charAt(i));
 			if (alphabet.indexOf(currentChar) == -1) {
 				encryptedString += currentChar;
 				j--;
@@ -70,20 +69,20 @@ public class VigenereCipher {
 	/**
 	 * Decrypts given string using specified keyword.
 	 * 
-	 * @param s       string to decrypt
+	 * @param ciphertext string to decrypt
 	 * @param keyword phrase to use in decryption process
 	 * @return decrypted string
 	 */
-	public String decrypt(String s, String keyword) {
+	public String decrypt(String ciphertext, String keyword) {
 		keyword = keyword.toUpperCase();
 		String decryptedString = "";
 		String shiftedAlphabet = "";
 		char currentChar;
 		int currentCharPositionInAlphabet;
 		int keywordCounter;
-		for (int i = 0, j = 0; i < s.length(); i++, j++) {
+		for (int i = 0, j = 0; i < ciphertext.length(); i++, j++) {
 			keywordCounter = j % keyword.length();
-			currentChar = Character.toUpperCase(s.charAt(i));
+			currentChar = Character.toUpperCase(ciphertext.charAt(i));
 			if (alphabet.indexOf(currentChar) == -1) {
 				decryptedString += currentChar;
 				j--;

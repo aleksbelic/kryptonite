@@ -1,6 +1,6 @@
 package start;
 
-import cyphers.*;
+import ciphers.*;
 
 /**
  * Start class.
@@ -11,10 +11,8 @@ public class Start {
 
 	public static void main(String[] args) {
 		
-		VigenereCipher vc = new VigenereCipher();
-		System.out.println(vc.encrypt("ATTACK AT DAWN", "LEMON"));
-		System.out.println(vc.decrypt("LXFOPV EF RNHR", "LEMON"));
-
+		RailFenceCipher rfc = new RailFenceCipher(2);
+		System.out.println(rfc.decrypt("aaj ablic enjoj"));
 	}
 
 }
