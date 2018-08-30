@@ -1,6 +1,7 @@
 package common;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Stats class.
@@ -12,12 +13,16 @@ public class Stats {
 	/**
 	 * Returns count of every char in a given string.
 	 * 
-	 * @param s string to process
+	 * @param s               string to process
+	 * @param countWhiteSpace should whitespace also be counted
 	 * @return count of every char in the string
 	 */
-	public static HashMap<Character, Integer> charCount(String s) {
+	public static HashMap<Character, Integer> charCount(String s, boolean countWhiteSpace) {
 		HashMap<Character, Integer> charCountMap = new HashMap<Character, Integer>();
 		for (int i = 0; i < s.length(); i++) {
+			if (!countWhiteSpace && Character.isWhitespace(s.charAt(i))) {
+				continue;
+			}
 			charCountMap.merge(s.charAt(i), 1, Integer::sum);
 		}
 		return charCountMap;
@@ -26,13 +31,20 @@ public class Stats {
 	/**
 	 * Returns frequency of every char in a given string.
 	 * 
-	 * @param s string to process.
+	 * @param s               string to process
+	 * @param countWhiteSpace should whitespace also be included in the calculation
 	 * @return frequency of every char in the string
 	 */
-	public static HashMap<Character, Double> charFrequency(String s) {
-		HashMap<Character, Integer> charCountMap = charCount(s);
+	public static HashMap<Character, Double> charFrequency(String s, boolean countWhiteSpace) {
+		if (!countWhiteSpace) {
+			s = s.replaceAll("\\s+", ""); // removing whitespace
+		}
+		HashMap<Character, Integer> charCountMap = charCount(s, countWhiteSpace);
 		HashMap<Character, Double> charFrequencyMap = new HashMap<Character, Double>();
-		charCountMap.forEach((k, v) -> charFrequencyMap.put(k, v * 100.0 / s.length()));
+
+		for (Map.Entry<Character, Integer> entry : charCountMap.entrySet()) {
+			charFrequencyMap.put(entry.getKey(), entry.getValue() * 100.0 / s.length());
+		}
 		return charFrequencyMap;
 	}
 
