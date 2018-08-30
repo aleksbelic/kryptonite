@@ -13,7 +13,8 @@ public class Stats {
 	/**
 	 * Returns count of every char in a given string.
 	 * 
-	 * @param s string to process
+	 * @param s               string to process
+	 * @param countWhiteSpace should whitespace also be counted
 	 * @return count of every char in the string
 	 */
 	public static HashMap<Character, Integer> charCount(String s, boolean countWhiteSpace) {
@@ -30,17 +31,18 @@ public class Stats {
 	/**
 	 * Returns frequency of every char in a given string.
 	 * 
-	 * @param s string to process.
+	 * @param s               string to process
+	 * @param countWhiteSpace should whitespace also be included in the calculation
 	 * @return frequency of every char in the string
 	 */
 	public static HashMap<Character, Double> charFrequency(String s, boolean countWhiteSpace) {
-		if (!countWhiteSpace) { // removing whitespace
-			s = s.replaceAll("\\s+","");
+		if (!countWhiteSpace) {
+			s = s.replaceAll("\\s+", ""); // removing whitespace
 		}
 		HashMap<Character, Integer> charCountMap = charCount(s, countWhiteSpace);
 		HashMap<Character, Double> charFrequencyMap = new HashMap<Character, Double>();
-		
-		for(Map.Entry<Character, Integer> entry : charCountMap.entrySet()) {
+
+		for (Map.Entry<Character, Integer> entry : charCountMap.entrySet()) {
 			charFrequencyMap.put(entry.getKey(), entry.getValue() * 100.0 / s.length());
 		}
 		return charFrequencyMap;
