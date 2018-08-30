@@ -1,7 +1,8 @@
 Problem:
-
-The ciphertext below was encrypted using a substitution cipher. Decrypt the ciphertext
-without knowledge of the key.
+========
+The ciphertext below was encrypted using a substitution cipher.
+Decrypt the ciphertext without knowledge of the key.
+Original plaintext is in english.
 
 	lrvmnir bpr sumvbwvr jx bpr lmiwv yjeryrkbi jx qmbm wi
 bpr xjvni mkd ymibrut jx irhx wi bpr riirkvr jx
@@ -19,3 +20,7 @@ mnbpjuwbt lnb yt rasruwrkvr cwbp qmbm pmi hrxb kj djnlb
 bpmb bpr xjhhjcwko wi bpr sujsru msshwvmbwjk mkd
 wkbrusurbmbwjk w jxxru yt bprjuwri wk bpr pjsr bpmb bpr
 riirkvr jx jqwkmcmk qmumbr cwhh urymwk wkbmvb
+
+Solution:
+=========
+
