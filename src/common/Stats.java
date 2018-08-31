@@ -28,6 +28,7 @@ public class Stats {
 		return charCountMap;
 	}
 
+	// TODO case-sensitive
 	/**
 	 * Returns frequency of every char in a given string.
 	 * 
