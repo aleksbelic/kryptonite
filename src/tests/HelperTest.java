@@ -9,7 +9,7 @@ import common.Helper;
  * 
  * @author Aleksandar Belic <aleks.belic@gmail.com>
  */
-public class HelperTest {
+class HelperTest {
 	
 	@Test
 	void testGetReversedString() {

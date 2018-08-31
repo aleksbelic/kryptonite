@@ -2,7 +2,6 @@ package tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
-
 import ciphers.RailFenceCipher;
 
 /**
@@ -10,7 +9,7 @@ import ciphers.RailFenceCipher;
  * 
  * @author Aleksandar Belic <aleks.belic@gmail.com>
  */
-public class RailFenceCipherTest {
+class RailFenceCipherTest {
 
 	RailFenceCipher rfc0 = new RailFenceCipher();
 	RailFenceCipher rfc1 = new RailFenceCipher(1);

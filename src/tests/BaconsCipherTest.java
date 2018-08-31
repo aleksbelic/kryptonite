@@ -10,7 +10,7 @@ import ciphers.BaconsCipher;
  * 
  * @author Aleksandar Belic <aleks.belic@gmail.com>
  */
-public class BaconsCipherTest {
+class BaconsCipherTest {
 
 	BaconsCipher bc1 = new BaconsCipher("1");
 	BaconsCipher bc2 = new BaconsCipher("2");
