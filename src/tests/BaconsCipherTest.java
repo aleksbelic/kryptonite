@@ -1,4 +1,4 @@
-package test;
+package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,7 @@ import ciphers.BaconsCipher;
  * 
  * @author Aleksandar Belic <aleks.belic@gmail.com>
  */
-class BaconsCipherTest {
+public class BaconsCipherTest {
 
 	BaconsCipher bc1 = new BaconsCipher("1");
 	BaconsCipher bc2 = new BaconsCipher("2");

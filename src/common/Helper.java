@@ -29,7 +29,7 @@ public class Helper {
 	 * Prints out map object key-value pairs as table.
 	 * 
 	 * @param map  HashMap to print out
-	 * @param sort should be sorting applied ('asc-key', 'desc-key', 'asc-value', 'desc-value', 'none')
+	 * @param sort should sorting be applied ('asc-key', 'desc-key', 'asc-value', 'desc-value', 'none')
 	 */
 	public static void printMapAsTable(HashMap<?, ?> map, String sort) {
 		for (Map.Entry<?, ?> entry : map.entrySet()) {
