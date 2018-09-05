@@ -32,6 +32,19 @@ public class Start {
 		HashMap<Character, Double> hm = Stats.charFrequency(ciphertext, false);
 		Helper.printMapAsTable(hm, "aaa");
 		
+		HashMap<Character, Character> substitutionMap = new HashMap<Character, Character>();
+		substitutionMap.put('w', 'a');
+		//substitutionMap.put('t', 'f');
+		substitutionMap.put('r', 'e');
+		//substitutionMap.put('b', 't');
+		//substitutionMap.put('p', 'h');
+		substitutionMap.put('i', 's');
+		substitutionMap.put('y', 'n');
+		substitutionMap.put('d', 'b');
+		substitutionMap.put('h', 'l');
+		substitutionMap.put('x', 'f');
+		System.out.println(Helper.substituteCharsInStringUsingMap(ciphertext, substitutionMap, false));
+		
 	}
 
 }

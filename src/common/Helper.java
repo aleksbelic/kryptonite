@@ -43,7 +43,7 @@ public class Helper {
 	 * @param ciphertext string to alter with new chars
 	 * @param substitutionMap chars used as substitution
 	 * @param caseSensitive should mapping be case sensitive
-	 * @return
+	 * @return plaintext with substituted chars 
 	 */
 	public static String substituteCharsInStringUsingMap(String ciphertext, Map<Character, Character> substitutionMap, boolean caseSensitive) {
 		String plaintext = "";

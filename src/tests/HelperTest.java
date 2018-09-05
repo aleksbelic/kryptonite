@@ -30,6 +30,9 @@ class HelperTest {
 		substitutionMap.put('B', 'Z');
 		assertEquals(Helper.substituteCharsInStringUsingMap("ABBA", substitutionMap, true), "XZZX");
 		assertEquals(Helper.substituteCharsInStringUsingMap("abBA", substitutionMap, false), "XZZX");
+		substitutionMap.put('b', 'z');
+		assertEquals(Helper.substituteCharsInStringUsingMap("abBA", substitutionMap, true), "azZX");
+		assertEquals(Helper.substituteCharsInStringUsingMap("abBA", substitutionMap, false), "XzzX");
 	}
 	
 	@Test
