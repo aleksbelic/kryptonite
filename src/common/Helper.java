@@ -36,5 +36,35 @@ public class Helper {
 			System.out.println(entry.getKey() + " => " + entry.getValue());
 		}
 	}
+	
+	/**
+	 * Substitutes chars in a string using substitution map.
+	 * 
+	 * @param ciphertext string to alter with new chars
+	 * @param substitutionMap chars used as substitution
+	 * @param caseSensitive should mapping be case sensitive
+	 * @return
+	 */
+	public static String substituteCharsInStringUsingMap(String ciphertext, Map<Character, Character> substitutionMap, boolean caseSensitive) {
+		String plaintext = "";
+		for (int i = 0; i < ciphertext.length(); i++) {
+			char currentChar = ciphertext.charAt(i);
+			if (caseSensitive) {
+				if (substitutionMap.containsKey(currentChar))
+					plaintext += substitutionMap.get(currentChar);
+				else
+					plaintext += currentChar;
+			} else {
+				if (substitutionMap.containsKey(Character.toLowerCase(currentChar)))
+					plaintext += substitutionMap.get(Character.toLowerCase(currentChar));
+				else if (substitutionMap.containsKey(Character.toUpperCase(currentChar)))
+					plaintext += substitutionMap.get(Character.toUpperCase(currentChar));
+				else
+					plaintext += currentChar;
+			}
+		}
+		
+		return plaintext;
+	}
 
 }
