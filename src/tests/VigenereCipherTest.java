@@ -1,8 +1,7 @@
-package test;
+package tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
-
 import ciphers.VigenereCipher;
 
 /**
@@ -10,7 +9,7 @@ import ciphers.VigenereCipher;
  * 
  * @author Aleksandar Belic <aleks.belic@gmail.com>
  */
-public class VigenereCipherTest {
+class VigenereCipherTest {
 
 	VigenereCipher vc = new VigenereCipher();
 

@@ -66,13 +66,13 @@ public class BaconsCipher {
 	/**
 	 * Encrypts given string.
 	 * 
-	 * @param s              string to encrypt
+	 * @param plaintext      string to encrypt
 	 * @param misleadingText visible text in which we are going to hide our real
 	 *                       message. It should be 5 times longer than the original
 	 *                       message.
 	 * @return encrypted string
 	 */
-	public String encrypt(String s, String misleadingText) {
+	public String encrypt(String plaintext, String misleadingText) {
 
 		// checking misleading text value
 		if (misleadingText.length() == 0) {
@@ -90,10 +90,10 @@ public class BaconsCipher {
 		}
 
 		// original Bacon's cipher uses bold & regular letters, we'll be using upper case & lower case letters respectively
-		s = s.toLowerCase();
+		plaintext = plaintext.toLowerCase();
 		misleadingText = misleadingText.toLowerCase();
 
-		String substituteString = this.encryptToAB(s);
+		String substituteString = this.encryptToAB(plaintext);
 		String encryptedString = "";
 
 		for (int i = 0, j = 0; i < substituteString.length(); i++, j++) {
@@ -114,22 +114,22 @@ public class BaconsCipher {
 	}
 
 	/**
-	 * Encrypts message with corresponding As and Bs.
+	 * Encrypts plaintext with corresponding As and Bs.
 	 * 
-	 * @param messageToEncrypt string to encrypt
-	 * @return encrypted message
+	 * @param plaintext string to encrypt
+	 * @return plaintext encrypted with corresponding As and Bs
 	 */
-	public String encryptToAB(String messageToEncrypt) {
-		messageToEncrypt = messageToEncrypt.toLowerCase();
+	public String encryptToAB(String plaintext) {
+		plaintext = plaintext.toLowerCase();
 		String substituteForChar = "";
-		String messageEncryptedToAB = "";
-		for (int i = 0; i < messageToEncrypt.length(); i++) {
-			substituteForChar = alphabetMap.get(messageToEncrypt.charAt(i));
+		String plaintextToAB = "";
+		for (int i = 0; i < plaintext.length(); i++) {
+			substituteForChar = alphabetMap.get(plaintext.charAt(i));
 			if (substituteForChar != null) {
-				messageEncryptedToAB += substituteForChar;
+				plaintextToAB += substituteForChar;
 			}
 		}
-		return messageEncryptedToAB;
+		return plaintextToAB;
 	}
 
 	/**

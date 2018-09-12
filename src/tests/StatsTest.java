@@ -1,4 +1,4 @@
-package test;
+package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
@@ -9,10 +9,10 @@ import common.Stats;
  * 
  * @author Aleksandar Belic <aleks.belic@gmail.com>
  */
-public class StatsTest {
+class StatsTest {
 	
 	@Test
-	void testEncryption() {
+	void testStats() {
 		assertEquals(Stats.charCount("lollapalooza", false).toString(), "{p=1, a=3, z=1, l=4, o=3}");
 		assertEquals(Stats.charCount("lollapalooza", true).toString(), "{p=1, a=3, z=1, l=4, o=3}");
 		
