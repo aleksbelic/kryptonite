@@ -1,3 +1,9 @@
+# Eclipse
 /bin/
 .classpath
 .project
+
+# IntelliJ
+/*.iml
+/.idea/
+/out/
