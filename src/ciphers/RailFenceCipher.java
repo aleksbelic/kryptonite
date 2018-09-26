@@ -25,7 +25,7 @@ public class RailFenceCipher {
 	}
 	
 	/**
-	 * Encrypts plaintext using Reil Fence Cipher.
+	 * Encrypts plaintext using Rail Fence Cipher.
 	 * 
 	 * @param plaintext text to encrypt
 	 * @param encryptWhitespace should whitespace also be included in ciphertext
@@ -44,14 +44,14 @@ public class RailFenceCipher {
 	}
 	
 	/**
-	 * Decrypts Reil Fence ciphertext.
+	 * Decrypts Rail Fence ciphertext.
 	 * 
 	 * @param ciphertext text to be deciphered
 	 * @return plaintext
 	 */
 	public String decrypt(String ciphertext) {
 
-		String plaintext = "";
+		StringBuilder plaintextStringBuilder = new StringBuilder();
 		
 		String[] ciphertextRails = new String[this.railCount];
 		String cipherTextTemp = ciphertext;
@@ -67,13 +67,13 @@ public class RailFenceCipher {
 		
 		for (int i = 0; i < ciphertextRails[0].length(); i++) { // ciphertextRails[0] is always the longest
 			for (int j = 0; j < ciphertextRails.length; j++) {
-				if (plaintext.length() == ciphertext.length()) {
-					return plaintext;
+				if (plaintextStringBuilder.length() == ciphertext.length()) {
+					return plaintextStringBuilder.toString();
 				}
-				plaintext += ciphertextRails[j].charAt(i);
+				plaintextStringBuilder.append(ciphertextRails[j].charAt(i));
 			}
 		}
-		return plaintext;
+		return plaintextStringBuilder.toString();
 	}
 
 }

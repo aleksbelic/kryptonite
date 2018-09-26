@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class BaconsCipher {
 
 	// substitution map, has different values for verion 1 and 2
-	private HashMap<Character, String> alphabetMap = new HashMap<Character, String>();
+	private HashMap<Character, String> alphabetMap = new HashMap<>();
 
 	public BaconsCipher(String version) {
 		alphabetMap.put('a', "aaaaa");
@@ -22,44 +22,47 @@ public class BaconsCipher {
 		alphabetMap.put('g', "aabba");
 		alphabetMap.put('h', "aabbb");
 		alphabetMap.put('i', "abaaa");
-		if (version == "1") {
-			alphabetMap.put('j', "abaaa");
-			alphabetMap.put('k', "abaab");
-			alphabetMap.put('l', "ababa");
-			alphabetMap.put('m', "ababb");
-			alphabetMap.put('n', "abbaa");
-			alphabetMap.put('o', "abbab");
-			alphabetMap.put('p', "abbba");
-			alphabetMap.put('q', "abbbb");
-			alphabetMap.put('r', "baaaa");
-			alphabetMap.put('s', "baaab");
-			alphabetMap.put('t', "baaba");
-			alphabetMap.put('u', "baabb");
-			alphabetMap.put('v', "baabb");
-			alphabetMap.put('w', "babaa");
-			alphabetMap.put('x', "babab");
-			alphabetMap.put('y', "babba");
-			alphabetMap.put('z', "babbb");
-		} else if (version == "2") {
-			alphabetMap.put('j', "abaab");
-			alphabetMap.put('k', "ababa");
-			alphabetMap.put('l', "ababb");
-			alphabetMap.put('m', "abbaa");
-			alphabetMap.put('n', "abbab");
-			alphabetMap.put('o', "abbba");
-			alphabetMap.put('p', "abbbb");
-			alphabetMap.put('q', "baaaa");
-			alphabetMap.put('r', "baaab");
-			alphabetMap.put('s', "baaba");
-			alphabetMap.put('t', "baabb");
-			alphabetMap.put('u', "babaa");
-			alphabetMap.put('v', "babab");
-			alphabetMap.put('w', "babba");
-			alphabetMap.put('x', "babbb");
-			alphabetMap.put('y', "bbaaa");
-			alphabetMap.put('z', "bbaab");
-		} else {
-			throw new IllegalArgumentException("ERROR: false cipher version given. Try passing \"1\" or \"2\".");
+		switch (version) {
+            case "1":
+                alphabetMap.put('j', "abaaa");
+                alphabetMap.put('k', "abaab");
+                alphabetMap.put('l', "ababa");
+                alphabetMap.put('m', "ababb");
+                alphabetMap.put('n', "abbaa");
+                alphabetMap.put('o', "abbab");
+                alphabetMap.put('p', "abbba");
+                alphabetMap.put('q', "abbbb");
+                alphabetMap.put('r', "baaaa");
+                alphabetMap.put('s', "baaab");
+                alphabetMap.put('t', "baaba");
+                alphabetMap.put('u', "baabb");
+                alphabetMap.put('v', "baabb");
+                alphabetMap.put('w', "babaa");
+                alphabetMap.put('x', "babab");
+                alphabetMap.put('y', "babba");
+                alphabetMap.put('z', "babbb");
+                break;
+            case "2":
+                alphabetMap.put('j', "abaab");
+                alphabetMap.put('k', "ababa");
+                alphabetMap.put('l', "ababb");
+                alphabetMap.put('m', "abbaa");
+                alphabetMap.put('n', "abbab");
+                alphabetMap.put('o', "abbba");
+                alphabetMap.put('p', "abbbb");
+                alphabetMap.put('q', "baaaa");
+                alphabetMap.put('r', "baaab");
+                alphabetMap.put('s', "baaba");
+                alphabetMap.put('t', "baabb");
+                alphabetMap.put('u', "babaa");
+                alphabetMap.put('v', "babab");
+                alphabetMap.put('w', "babba");
+                alphabetMap.put('x', "babbb");
+                alphabetMap.put('y', "bbaaa");
+                alphabetMap.put('z', "bbaab");
+                break;
+		    default:
+			    throw new IllegalArgumentException("ERROR: false cipher version given. Try passing \"1\" or \"2\".");
 		}
 	}
 
@@ -94,23 +97,23 @@ public class BaconsCipher {
 		misleadingText = misleadingText.toLowerCase();
 
 		String substituteString = this.encryptToAB(plaintext);
-		String encryptedString = "";
+		StringBuilder encryptedStringBuilder = new StringBuilder();
 
 		for (int i = 0, j = 0; i < substituteString.length(); i++, j++) {
 			if (!Character.isLetter(misleadingText.charAt(j % misleadingText.length()))) {
 				while (!Character.isLetter(misleadingText.charAt(j % misleadingText.length()))) {
-					encryptedString += misleadingText.charAt(j % misleadingText.length());
+					encryptedStringBuilder.append(misleadingText.charAt(j % misleadingText.length()));
 					j++;
 				}
 			}
 			if (substituteString.charAt(i) == 'a') {
-				encryptedString += misleadingText.charAt(j % misleadingText.length());
+				encryptedStringBuilder.append(misleadingText.charAt(j % misleadingText.length()));
 			} else if (substituteString.charAt(i) == 'b') {
-				encryptedString += Character.toUpperCase(misleadingText.charAt(j % misleadingText.length()));
+				encryptedStringBuilder.append(Character.toUpperCase(misleadingText.charAt(j % misleadingText.length())));
 			}
 		}
 
-		return encryptedString;
+		return encryptedStringBuilder.toString();
 	}
 
 	/**
@@ -121,15 +124,16 @@ public class BaconsCipher {
 	 */
 	public String encryptToAB(String plaintext) {
 		plaintext = plaintext.toLowerCase();
-		String substituteForChar = "";
-		String plaintextToAB = "";
+		String substituteForChar;
+		StringBuilder plaintextToABStringBuilder = new StringBuilder();
+
 		for (int i = 0; i < plaintext.length(); i++) {
 			substituteForChar = alphabetMap.get(plaintext.charAt(i));
 			if (substituteForChar != null) {
-				plaintextToAB += substituteForChar;
+				plaintextToABStringBuilder.append(substituteForChar);
 			}
 		}
-		return plaintextToAB;
+		return plaintextToABStringBuilder.toString();
 	}
 
 	/**
@@ -142,37 +146,38 @@ public class BaconsCipher {
 
 		// validating encrypted AB message
 		if (messageEncryptedToAB.length() % 5 != 0) {
-			throw new IllegalArgumentException("ERROR: encrypted message is corruped, length not divisible by 5.");
+			throw new IllegalArgumentException("ERROR: encrypted message is corrupted, length not divisible by 5.");
 		}
 
-		String substringAB = "";
-		String decryptedMessage = "";
+		String substringAB;
+		StringBuilder decryptedMessageStringBuilder = new StringBuilder();
+
 		for (int i = 0; i < messageEncryptedToAB.length(); i += 5) {
 			substringAB = messageEncryptedToAB.substring(i, i + 5);
 			for (Object alphabetMapKey : alphabetMap.keySet()) {
 				if (alphabetMap.get(alphabetMapKey).equals(substringAB)) {
-					decryptedMessage += alphabetMapKey;
+					decryptedMessageStringBuilder.append(alphabetMapKey);
 					break;
 				}
 			}
 		}
-		return decryptedMessage;
+		return decryptedMessageStringBuilder.toString();
 	}
 
 	/**
 	 * Decrypts given string.
 	 * 
-	 * @param s string to decrypt
+	 * @param encryptedMessage string to decrypt
 	 * @return encrypted string
 	 */
 	public String decrypt(String encryptedMessage) {
-		String messageEncryptedToAB = "";
+		StringBuilder messageEncryptedToABStringBuilder = new StringBuilder();
 		for (int i = 0; i < encryptedMessage.length(); i++) {
 			if (Character.isLetter(encryptedMessage.charAt(i))) {
-				messageEncryptedToAB += (Character.isLowerCase(encryptedMessage.charAt(i))) ? 'a' : 'b';
+				messageEncryptedToABStringBuilder.append((Character.isLowerCase(encryptedMessage.charAt(i))) ? 'a' : 'b');
 			}
 		}
-		return decryptAB(messageEncryptedToAB);
+		return decryptAB(messageEncryptedToABStringBuilder.toString());
 	}
 
 }

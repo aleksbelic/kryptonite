@@ -14,7 +14,7 @@ package ciphers;
  */
 public class AtbashCipher {
 	
-	protected String alphabet;
+	private String alphabet;
 	
 	public AtbashCipher(String alphabet) {
 		this.alphabet = alphabet;
@@ -27,18 +27,18 @@ public class AtbashCipher {
 	 * @return ciphertext
 	 */
 	public String encode(String plaintext) {
-		String ciphertext = "";
+	    StringBuilder ciphertextStringBuilder = new StringBuilder();
 		for (int i = 0; i < plaintext.length(); i++) {
 			char currentChar = plaintext.charAt(i);
 			if (alphabet.indexOf(Character.toLowerCase(currentChar)) != -1 || alphabet.indexOf(Character.toUpperCase(currentChar)) != -1) {
 				int currentCharAlphabetIndex = alphabet.indexOf(Character.toLowerCase(currentChar)) != -1 ? alphabet.indexOf(Character.toLowerCase(currentChar)) : alphabet.indexOf(Character.toUpperCase(currentChar));
 				char substitutionChar = alphabet.charAt(alphabet.length() - currentCharAlphabetIndex - 1);
-				ciphertext += Character.isLowerCase(currentChar) ? Character.toLowerCase(substitutionChar) : Character.toUpperCase(substitutionChar);
+                ciphertextStringBuilder.append(Character.isLowerCase(currentChar) ? Character.toLowerCase(substitutionChar) : Character.toUpperCase(substitutionChar));
 			} else {
-				ciphertext += currentChar;
+                ciphertextStringBuilder.append(currentChar);
 			}
 		}
-		return ciphertext;
+		return ciphertextStringBuilder.toString();
 	}
 	
 	/**

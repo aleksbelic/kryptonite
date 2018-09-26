@@ -12,7 +12,7 @@ import common.Constants;
  */
 class AtbashCipherTest {
 
-	AtbashCipher atb = new AtbashCipher(Constants.ALPHABET_EN);
+	private AtbashCipher atb = new AtbashCipher(Constants.ALPHABET_EN);
 	
 	@Test
 	void testEncryption() {
@@ -21,7 +21,7 @@ class AtbashCipherTest {
 
 	@Test
 	void testDecryption() {
-		assertEquals(atb.encode("Gsrh rh hlnv srwwvm nvhhztv."), "This is some hidden message.");
+		assertEquals(atb.decode("Gsrh rh hlnv srwwvm nvhhztv."), "This is some hidden message.");
 	}
 
 }
