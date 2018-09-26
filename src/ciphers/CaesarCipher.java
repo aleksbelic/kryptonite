@@ -42,123 +42,113 @@ public class CaesarCipher {
 	/**
 	 * Decrypts given string with a given key.
 	 * 
-	 * @param s   string to decrypt
+	 * @param ciphertext   string to decrypt
 	 * @param key key for creating shifted alphabet
-	 * @return decrypted string
+	 * @return plaintext
 	 */
-	public String decrypt(String s, int key) {
+	public String decrypt(String ciphertext, int key) {
 		key %= this.alphabet.length();
 		String shiftedAlphabet = this.alphabet.substring(key) + this.alphabet.substring(0, key);
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < s.length(); i++) {
-			int charPositionInShiftedAlphabet = shiftedAlphabet.indexOf(Character.toUpperCase(s.charAt(i)));
+		StringBuilder plaintextStringBuilder = new StringBuilder();
+		for (int i = 0; i < ciphertext.length(); i++) {
+			int charPositionInShiftedAlphabet = shiftedAlphabet.indexOf(Character.toUpperCase(ciphertext.charAt(i)));
 			if (charPositionInShiftedAlphabet != -1) {
-				if (Character.isUpperCase(s.charAt(i))) {
-					sb.append(this.alphabet.charAt(charPositionInShiftedAlphabet));
+				if (Character.isUpperCase(ciphertext.charAt(i))) {
+					plaintextStringBuilder.append(this.alphabet.charAt(charPositionInShiftedAlphabet));
 				} else {
-					sb.append(Character.toLowerCase(this.alphabet.charAt(charPositionInShiftedAlphabet)));
+					plaintextStringBuilder.append(Character.toLowerCase(this.alphabet.charAt(charPositionInShiftedAlphabet)));
 				}
 			} else {
-				sb.append(s.charAt(i));
+				plaintextStringBuilder.append(ciphertext.charAt(i));
 			}
 		}
-		return sb.toString();
+		return plaintextStringBuilder.toString();
 	}
 
 	/**
-	 * Encrypts given string with two given key, 1st for every even and 2nd for
-	 * every odd char position.
+	 * Encrypts given string with two given key, 1st for every even and 2nd for every odd char position.
 	 * 
-	 * @param s    string to encrypt
+	 * @param plaintext    string to encrypt
 	 * @param key1 key for creating shifted alphabet for every even char
 	 * @param key2 key for creating shifted alphabet for every odd char
-	 * @return encrypted string
+	 * @return ciphertext
 	 */
-	public String encryptTwoKeys(String s, int key1, int key2) {
+	public String encryptTwoKeys(String plaintext, int key1, int key2) {
 		key1 %= this.alphabet.length();
 		key2 %= this.alphabet.length();
 		String shiftedAlphabet;
 		String shiftedAlphabet1 = this.alphabet.substring(key1) + this.alphabet.substring(0, key1);
 		String shiftedAlphabet2 = this.alphabet.substring(key2) + this.alphabet.substring(0, key2);
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < s.length(); i++) {
-			if (i % 2 == 0) {
+		StringBuilder ciphertextStringBuilder = new StringBuilder();
+		for (int i = 0; i < plaintext.length(); i++) {
+			if (i % 2 == 0)
 				shiftedAlphabet = shiftedAlphabet1;
-			} else {
+			else
 				shiftedAlphabet = shiftedAlphabet2;
-			}
-			int charPositionInAlphabet = this.alphabet.indexOf(Character.toUpperCase(s.charAt(i)));
-			if (charPositionInAlphabet != -1) {
-				if (Character.isUpperCase(s.charAt(i))) {
-					sb.append(shiftedAlphabet.charAt(charPositionInAlphabet));
-				} else {
-					sb.append(Character.toLowerCase(shiftedAlphabet.charAt(charPositionInAlphabet)));
-				}
-			} else {
-				sb.append(s.charAt(i));
-			}
+			int charPositionInAlphabet = this.alphabet.indexOf(Character.toUpperCase(plaintext.charAt(i)));
+			if (charPositionInAlphabet != -1)
+				if (Character.isUpperCase(plaintext.charAt(i)))
+					ciphertextStringBuilder.append(shiftedAlphabet.charAt(charPositionInAlphabet));
+				else
+					ciphertextStringBuilder.append(Character.toLowerCase(shiftedAlphabet.charAt(charPositionInAlphabet)));
+			else
+				ciphertextStringBuilder.append(plaintext.charAt(i));
 		}
-		return sb.toString();
+		return ciphertextStringBuilder.toString();
 	}
 
 	/**
 	 * Decrypts given string with two given key, 1st for every even and 2nd for
 	 * every odd char position.
 	 * 
-	 * @param s    string to decrypt
+	 * @param ciphertext    string to decrypt
 	 * @param key1 key for creating shifted alphabet for every even char
 	 * @param key2 key for creating shifted alphabet for every odd char
 	 * @return decrypted string
 	 */
-	public String decryptTwoKeys(String s, int key1, int key2) {
+	public String decryptTwoKeys(String ciphertext, int key1, int key2) {
 		key1 %= this.alphabet.length();
 		key2 %= this.alphabet.length();
 		String shiftedAlphabet;
 		String shiftedAlphabet1 = this.alphabet.substring(key1) + this.alphabet.substring(0, key1);
 		String shiftedAlphabet2 = this.alphabet.substring(key2) + this.alphabet.substring(0, key2);
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < s.length(); i++) {
-			if (i % 2 == 0) {
+		StringBuilder plaintextStringBuilder = new StringBuilder();
+		for (int i = 0; i < ciphertext.length(); i++) {
+			if (i % 2 == 0)
 				shiftedAlphabet = shiftedAlphabet1;
-			} else {
+			else
 				shiftedAlphabet = shiftedAlphabet2;
-			}
-			int charPositionInShiftedAlphabet = shiftedAlphabet.indexOf(Character.toUpperCase(s.charAt(i)));
-			if (charPositionInShiftedAlphabet != -1) {
-				if (Character.isUpperCase(s.charAt(i))) {
-					sb.append(this.alphabet.charAt(charPositionInShiftedAlphabet));
-				} else {
-					sb.append(Character.toLowerCase(this.alphabet.charAt(charPositionInShiftedAlphabet)));
-				}
-			} else {
-				sb.append(s.charAt(i));
-			}
+			int charPositionInShiftedAlphabet = shiftedAlphabet.indexOf(Character.toUpperCase(ciphertext.charAt(i)));
+			if (charPositionInShiftedAlphabet != -1)
+				if (Character.isUpperCase(ciphertext.charAt(i)))
+					plaintextStringBuilder.append(this.alphabet.charAt(charPositionInShiftedAlphabet));
+				else
+					plaintextStringBuilder.append(Character.toLowerCase(this.alphabet.charAt(charPositionInShiftedAlphabet)));
+			else
+				plaintextStringBuilder.append(ciphertext.charAt(i));
 		}
-		return sb.toString();
+		return plaintextStringBuilder.toString();
 	}
 
 	/**
-	 * Prints decrypted string with every key in the alphabet.
+	 * Prints out ciphertext for every key in alphabet.
 	 * 
-	 * @param s string to decrypt
+	 * @param ciphertext string to decrypt
 	 */
-	public void eyeball(String s) {
-		for (int i = 1; i <= this.alphabet.length(); i++) {
-			System.out.println(this.decrypt(s, i));
-		}
+	public void eyeball(String ciphertext) {
+		for (int i = 1; i <= this.alphabet.length(); i++)
+			System.out.println(this.decrypt(ciphertext, i));
 	}
 
 	/**
 	 * Prints decrypted string with every two-key combination in the alphabet.
 	 * 
-	 * @param s string to decrypt
+	 * @param ciphertext string to decrypt
 	 */
-	public void eyeballTwoKeys(String s) {
-		for (int i = 1; i <= this.alphabet.length(); i++) {
-			for (int j = 1; j <= this.alphabet.length(); j++) {
-				System.out.println(this.decryptTwoKeys(s, i, j));
-			}
-		}
+	public void eyeballTwoKeys(String ciphertext) {
+		for (int i = 1; i <= this.alphabet.length(); i++)
+			for (int j = 1; j <= this.alphabet.length(); j++)
+				System.out.println(this.decryptTwoKeys(ciphertext, i, j));
 	}
 
 }
