@@ -11,7 +11,7 @@ import ciphers.VigenereCipher;
  */
 class VigenereCipherTest {
 
-	VigenereCipher vc = new VigenereCipher();
+	private VigenereCipher vc = new VigenereCipher();
 
 	@Test
 	void testEncryption() {

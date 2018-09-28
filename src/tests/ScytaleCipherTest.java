@@ -11,9 +11,9 @@ import ciphers.ScytaleCipher;
  */
 class ScytaleCipherTest {
 
-	ScytaleCipher sc = new ScytaleCipher(1);
-	ScytaleCipher sc2 = new ScytaleCipher(2);
-	ScytaleCipher sc3 = new ScytaleCipher(4);
+	private ScytaleCipher sc = new ScytaleCipher(1);
+	private ScytaleCipher sc2 = new ScytaleCipher(2);
+	private ScytaleCipher sc3 = new ScytaleCipher(4);
 
 	@Test
 	void testEncryption() {

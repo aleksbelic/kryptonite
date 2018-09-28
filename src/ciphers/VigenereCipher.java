@@ -11,14 +11,13 @@ import common.Constants;
 public class VigenereCipher {
 
 	private String alphabet = Constants.ALPHABET_EN;
-	private HashMap<Character, String> tabulaRecta = new HashMap<Character, String>();
+	private HashMap<Character, String> tabulaRecta = new HashMap<>();
 
 	/**
 	 * Constructor generates tabula recta with default english alphabet.
 	 */
 	public VigenereCipher() {
-		alphabet = Constants.ALPHABET_EN;
-		String shiftedAlphabet = "";
+		String shiftedAlphabet;
 		for (int i = 0; i < alphabet.length(); i++) {
 			shiftedAlphabet = alphabet.substring(i) + alphabet.substring(0, i);
 			tabulaRecta.put(alphabet.charAt(i), shiftedAlphabet);
@@ -30,7 +29,7 @@ public class VigenereCipher {
 	 */
 	public VigenereCipher(String userAlphabet) {
 		alphabet = userAlphabet;
-		String shiftedAlphabet = "";
+		String shiftedAlphabet;
 		for (int i = 0; i < alphabet.length(); i++) {
 			shiftedAlphabet = alphabet.substring(i) + alphabet.substring(0, i);
 			tabulaRecta.put(alphabet.charAt(i), shiftedAlphabet);
@@ -42,12 +41,12 @@ public class VigenereCipher {
 	 * 
 	 * @param plaintext string to encrypt
 	 * @param keyword phrase to use in encryption process
-	 * @return encrypted string
+	 * @return ciphertext
 	 */
 	public String encrypt(String plaintext, String keyword) {
 		keyword = keyword.toUpperCase();
-		String encryptedString = "";
-		String shiftedAlphabet = "";
+		StringBuilder ciphertextStringBuilder = new StringBuilder();
+		String shiftedAlphabet;
 		char currentChar;
 		int currentCharPositionInAlphabet;
 		int keywordCounter;
@@ -55,15 +54,15 @@ public class VigenereCipher {
 			keywordCounter = j % keyword.length();
 			currentChar = Character.toUpperCase(plaintext.charAt(i));
 			if (alphabet.indexOf(currentChar) == -1) {
-				encryptedString += currentChar;
+				ciphertextStringBuilder.append(currentChar);
 				j--;
 			} else {
 				shiftedAlphabet = tabulaRecta.get(keyword.charAt(keywordCounter));
 				currentCharPositionInAlphabet = alphabet.indexOf(currentChar);
-				encryptedString += shiftedAlphabet.charAt(currentCharPositionInAlphabet);
+				ciphertextStringBuilder.append(shiftedAlphabet.charAt(currentCharPositionInAlphabet));
 			}
 		}
-		return encryptedString;
+		return ciphertextStringBuilder.toString();
 	}
 
 	/**
@@ -71,12 +70,12 @@ public class VigenereCipher {
 	 * 
 	 * @param ciphertext string to decrypt
 	 * @param keyword phrase to use in decryption process
-	 * @return decrypted string
+	 * @return plaintext
 	 */
 	public String decrypt(String ciphertext, String keyword) {
 		keyword = keyword.toUpperCase();
-		String decryptedString = "";
-		String shiftedAlphabet = "";
+		StringBuilder plaintextStringBuilder = new StringBuilder();
+		String shiftedAlphabet;
 		char currentChar;
 		int currentCharPositionInAlphabet;
 		int keywordCounter;
@@ -84,14 +83,14 @@ public class VigenereCipher {
 			keywordCounter = j % keyword.length();
 			currentChar = Character.toUpperCase(ciphertext.charAt(i));
 			if (alphabet.indexOf(currentChar) == -1) {
-				decryptedString += currentChar;
+				plaintextStringBuilder.append(currentChar);
 				j--;
 			} else {
 				shiftedAlphabet = tabulaRecta.get(keyword.charAt(keywordCounter));
 				currentCharPositionInAlphabet = shiftedAlphabet.indexOf(currentChar);
-				decryptedString += alphabet.charAt(currentCharPositionInAlphabet);
+				plaintextStringBuilder.append(alphabet.charAt(currentCharPositionInAlphabet));
 			}
 		}
-		return decryptedString;
+		return plaintextStringBuilder.toString();
 	}
 }

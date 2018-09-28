@@ -11,10 +11,10 @@ import ciphers.RailFenceCipher;
  */
 class RailFenceCipherTest {
 
-	RailFenceCipher rfc0 = new RailFenceCipher();
-	RailFenceCipher rfc1 = new RailFenceCipher(1);
-	RailFenceCipher rfc2 = new RailFenceCipher(2);
-	RailFenceCipher rfc3 = new RailFenceCipher(3);
+	private RailFenceCipher rfc0 = new RailFenceCipher();
+	private RailFenceCipher rfc1 = new RailFenceCipher(1);
+	private RailFenceCipher rfc2 = new RailFenceCipher(2);
+	private RailFenceCipher rfc3 = new RailFenceCipher(3);
 
 	@Test
 	void testEncryption() {

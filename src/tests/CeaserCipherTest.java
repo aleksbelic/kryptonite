@@ -12,7 +12,7 @@ import common.Constants;
  */
 class CeaserCipherTest {
 
-	CaesarCipher cc = new CaesarCipher(Constants.ALPHABET_EN);
+	private CaesarCipher cc = new CaesarCipher(Constants.ALPHABET_EN);
 
 	@Test
 	void testEncryption() {
@@ -27,5 +27,18 @@ class CeaserCipherTest {
 		assertEquals(cc.decrypt("bCCB", 1), "aBBA");
 		assertEquals(cc.decrypt("bC C!", 1), "aB B!");
 	}
+
+	@Test
+	void testEncryptTwoKeys() {
+		assertEquals(cc.encryptTwoKeys("Just some silly Message.", 3, 4), "Myvx wrqh vmopb Pivwdkh.");
+	}
+
+	@Test
+	void testDecryptTwoKeys() {
+		assertEquals(cc.decryptTwoKeys("Myvx wrqh vmopb Pivwdkh.", 3, 4), "Just some silly Message.");
+	}
+
+	// TODO eyeball
+	// TODO eyeballTwoKeys
 
 }

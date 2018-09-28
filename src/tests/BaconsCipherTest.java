@@ -11,8 +11,8 @@ import ciphers.BaconsCipher;
  */
 class BaconsCipherTest {
 
-	BaconsCipher bc1 = new BaconsCipher("1");
-	BaconsCipher bc2 = new BaconsCipher("2");
+	private BaconsCipher bc1 = new BaconsCipher("1");
+	private BaconsCipher bc2 = new BaconsCipher("2");
 	
 	@Test
 	void testEncryptionToAB() {

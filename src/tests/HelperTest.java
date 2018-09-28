@@ -21,7 +21,7 @@ class HelperTest {
 	
 	@Test
 	void testSubstituteCharsInStringUsingMap() {
-		HashMap<Character, Character> substitutionMap = new HashMap<Character, Character>();
+		HashMap<Character, Character> substitutionMap = new HashMap<>();
 		assertEquals(Helper.substituteCharsInStringUsingMap("", substitutionMap, true), "");
 		assertEquals(Helper.substituteCharsInStringUsingMap("", substitutionMap, false), "");
 		substitutionMap.put('A', 'X');
