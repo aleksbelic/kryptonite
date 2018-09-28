@@ -28,8 +28,16 @@ class CeaserCipherTest {
 		assertEquals(cc.decrypt("bC C!", 1), "aB B!");
 	}
 
-	// TODO encryptTwoKeys
-	// TODO decryptTwoKeys
+	@Test
+	void testEncryptTwoKeys() {
+		assertEquals(cc.encryptTwoKeys("Just some silly Message.", 3, 4), "Myvx wrqh vmopb Pivwdkh.");
+	}
+
+	@Test
+	void testDecryptTwoKeys() {
+		assertEquals(cc.decryptTwoKeys("Myvx wrqh vmopb Pivwdkh.", 3, 4), "Just some silly Message.");
+	}
+
 	// TODO eyeball
 	// TODO eyeballTwoKeys
 
