@@ -1,5 +1,6 @@
 package ciphers;
 
+import common.Constants;
 import java.util.Random;
 
 /**
@@ -37,26 +38,23 @@ public class M94 {
             "AZDNBUHYFWJLVGRCQMPSOEXTKI" // Z25
     };
 
-    public M94() {
-
-    }
-
     /**
-     * Sets up the discs in a proper position so that one line reads the plaintext.
+     * Sets up the discs in a proper position so that one of the lines reads the plaintext.
      *
      * @param plaintext string to encrypt
      * @return randomly picked ciphertext
      */
     public String encrypt(String plaintext) {
+        plaintext = plaintext.replaceAll("\\s+","");
+        plaintext = plaintext.toUpperCase();
+
+        for (int i = 0; i < plaintext.length(); i++)
+            if (Constants.ALPHABET_EN.indexOf(plaintext.charAt(i)) == -1)
+                throw new IllegalArgumentException("ERROR: plaintext can contain only English alphabet letters.");
+
         if (plaintext.length() > this.discs.length)
             throw new IllegalArgumentException("ERROR: plaintext should not be longer than " + this.discs.length + " characters.");
-        else if (plaintext.equals("")) {
-            // TODO
-        }
 
-        // remove whitespace TODO
-        plaintext = plaintext.toUpperCase();
-        String[] ciphertextCandidates = new String[25]; // all possible ciphertexts
         for (int i = 0; i < this.discs.length; i++) {
             int charPositionOnDisc;
             try {
@@ -66,14 +64,15 @@ public class M94 {
                 charPositionOnDisc = rand.nextInt(this.discs[i].length());
             }
             this.discs[i] = this.discs[i].substring(charPositionOnDisc) + this.discs[i].substring(0, charPositionOnDisc);
-
         }
 
-        for (String disc : this.discs) {
-            System.out.println(disc);
-        }
+        StringBuilder ciphertextStringBuilder = new StringBuilder();
+        Random rand = new Random();
+        int randomCiphertextIndex = rand.nextInt(Constants.ALPHABET_EN.length()) + 1; // [1 - 26]
+        for (String disc : this.discs)
+            ciphertextStringBuilder.append(disc.charAt(randomCiphertextIndex));
 
-        return "";
+        return ciphertextStringBuilder.toString();
     }
 
 }
