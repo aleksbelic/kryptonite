@@ -42,10 +42,10 @@ public class M94 {
      * Sets up the discs in a proper position so that one of the lines reads the plaintext.
      *
      * @param plaintext string to encrypt
-     * @return randomly picked ciphertext
+     * @return randomly chosen ciphertext candidate
      */
     public String encrypt(String plaintext) {
-        plaintext = plaintext.replaceAll("\\s+","");
+        plaintext = plaintext.replaceAll("\\s+", "");
         plaintext = plaintext.toUpperCase();
 
         for (int i = 0; i < plaintext.length(); i++)
@@ -73,6 +73,56 @@ public class M94 {
             ciphertextStringBuilder.append(disc.charAt(randomCiphertextIndex));
 
         return ciphertextStringBuilder.toString();
+    }
+
+    /**
+     * Sets up the discs in a proper position so that one of the lines reads the ciphertext.
+     *
+     * @param ciphertext string to decrypt
+     * @return all plaintext candidates
+     */
+    public String[] decrypt(String ciphertext) {
+        ciphertext = ciphertext.toUpperCase();
+
+        for (int i = 0; i < ciphertext.length(); i++)
+            if (Constants.ALPHABET_EN.indexOf(ciphertext.charAt(i)) == -1)
+                throw new IllegalArgumentException("ERROR: ciphertext can contain only English alphabet letters.");
+
+        if (ciphertext.length() > this.discs.length)
+            throw new IllegalArgumentException("ERROR: ciphertext should not be longer than " + this.discs.length + " characters.");
+
+        // repositioning the discs
+        for (int i = 0; i < this.discs.length; i++) {
+            int charPositionOnDisc;
+            try {
+                charPositionOnDisc = this.discs[i].indexOf(ciphertext.charAt(i));
+            } catch (StringIndexOutOfBoundsException e) {
+                Random rand = new Random();
+                charPositionOnDisc = rand.nextInt(this.discs[i].length());
+            }
+            this.discs[i] = this.discs[i].substring(charPositionOnDisc) + this.discs[i].substring(0, charPositionOnDisc);
+        }
+
+        String[] plaintextCandidates = new String[26];
+        for (int i = 0; i < Constants.ALPHABET_EN.length(); i++) {
+            StringBuilder plaintextCandidateStringBuilder = new StringBuilder();
+            for (String disc : this.discs) {
+                plaintextCandidateStringBuilder.append(disc.charAt(i));
+            }
+            plaintextCandidates[i] = plaintextCandidateStringBuilder.toString();
+        }
+        return plaintextCandidates;
+    }
+
+    /**
+     * Sets up the discs in a proper position so that one of the lines reads the ciphertext and prints out all possible plaintext candidates.
+     *
+     * @param ciphertext string to decrypt
+     */
+    public void eyeball(String ciphertext) {
+        String[] plaintextCandidates = this.decrypt(ciphertext);
+        for (String plaintextCandidate : plaintextCandidates)
+            System.out.println(plaintextCandidate);
     }
 
 }
