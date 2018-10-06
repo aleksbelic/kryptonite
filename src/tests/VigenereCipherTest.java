@@ -3,15 +3,17 @@ package tests;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import ciphers.VigenereCipher;
+import common.Constants;
 
 /**
  * VigenereCipherTest class.
- * 
+ *
  * @author Aleksandar Belic <aleks.belic@gmail.com>
  */
 class VigenereCipherTest {
 
 	private VigenereCipher vc = new VigenereCipher();
+	private VigenereCipher vcGermanAlphabet = new VigenereCipher(Constants.ALPHABET_DE); // TODO
 
 	@Test
 	void testEncryption() {

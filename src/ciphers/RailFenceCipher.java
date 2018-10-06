@@ -15,11 +15,9 @@ import java.util.Arrays;
 public class RailFenceCipher {
 
 	private int railCount;
-
 	public RailFenceCipher() {
 		this.railCount = 2;
 	}
-	
 	public RailFenceCipher(int railCount) {
 		this.railCount = railCount;
 	}
@@ -32,21 +30,19 @@ public class RailFenceCipher {
 	 * @return ciphertext
 	 */
 	public String encrypt(String plaintext, boolean encryptWhitespace) {
-		if (!encryptWhitespace) {
+		if (!encryptWhitespace)
 			plaintext = plaintext.replaceAll("\\s+","");
-		}
 		String[] ciphertextRails = new String[this.railCount];
 		Arrays.fill(ciphertextRails, "");
-		for (int i = 0; i < plaintext.length(); i++) {
+		for (int i = 0; i < plaintext.length(); i++)
 			ciphertextRails[i % this.railCount] += plaintext.charAt(i);
-		}
 		return String.join("", ciphertextRails);
 	}
 	
 	/**
 	 * Decrypts Rail Fence ciphertext.
 	 * 
-	 * @param ciphertext text to be deciphered
+	 * @param ciphertext string to decrypt
 	 * @return plaintext
 	 */
 	public String decrypt(String ciphertext) {
@@ -54,22 +50,21 @@ public class RailFenceCipher {
 		StringBuilder plaintextStringBuilder = new StringBuilder();
 		
 		String[] ciphertextRails = new String[this.railCount];
-		String cipherTextTemp = ciphertext;
+		String ciphertextTemp = ciphertext;
 		int railCountTemp = this.railCount;
 		
 		Arrays.fill(ciphertextRails, "");
 		for (int i = 0; i < this.railCount; i++) {
-			int ciphertextRailsLength = (cipherTextTemp.length() % railCountTemp == 0) ? cipherTextTemp.length() / railCountTemp : (cipherTextTemp.length() / railCountTemp) + 1;
-			ciphertextRails[i] = cipherTextTemp.substring(0, ciphertextRailsLength);
-			cipherTextTemp = cipherTextTemp.substring(ciphertextRailsLength);
+			int ciphertextRailsLength = (ciphertextTemp.length() % railCountTemp == 0) ? ciphertextTemp.length() / railCountTemp : (ciphertextTemp.length() / railCountTemp) + 1;
+			ciphertextRails[i] = ciphertextTemp.substring(0, ciphertextRailsLength);
+			ciphertextTemp = ciphertextTemp.substring(ciphertextRailsLength);
 			railCountTemp--;
 		}
 		
 		for (int i = 0; i < ciphertextRails[0].length(); i++) { // ciphertextRails[0] is always the longest
 			for (int j = 0; j < ciphertextRails.length; j++) {
-				if (plaintextStringBuilder.length() == ciphertext.length()) {
+				if (plaintextStringBuilder.length() == ciphertext.length())
 					return plaintextStringBuilder.toString();
-				}
 				plaintextStringBuilder.append(ciphertextRails[j].charAt(i));
 			}
 		}

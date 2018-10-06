@@ -1,7 +1,7 @@
 package ciphers;
 
 /**
- * CeaserCipher class.
+ * Caeser cipher class.
  *
  * @author Aleksandar Belic <aleks.belic@gmail.com>
  */
@@ -100,7 +100,7 @@ public class CaesarCipher {
      * @param ciphertext string to decrypt
      * @param key1       key for creating shifted alphabet for every even char
      * @param key2       key for creating shifted alphabet for every odd char
-     * @return decrypted string
+     * @return plaintext
      */
     public String decryptTwoKeys(String ciphertext, int key1, int key2) {
         key1 %= this.alphabet.length();
