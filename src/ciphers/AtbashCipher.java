@@ -21,7 +21,7 @@ public class AtbashCipher {
 	}
 	
 	/**
-	 * Encrypts plaintext.
+	 * Encodes plaintext.
 	 * 
 	 * @param plaintext string to encode
 	 * @return ciphertext
@@ -42,7 +42,7 @@ public class AtbashCipher {
 	}
 	
 	/**
-	 * Decrypts ciphertext.
+	 * Decodes ciphertext.
 	 * 
 	 * @param ciphertext string to decipher
 	 * @return plaintext
