@@ -10,11 +10,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 /**
- * Caeser cipher test class.
+ * Caesar cipher test class.
  *
  * @author Aleksandar Belic <aleks.belic@gmail.com>
  */
-class CaeserCipherTest {
+class CaesarCipherTest {
 
     private CaesarCipher cc = new CaesarCipher(Constants.ALPHABET_EN);
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();

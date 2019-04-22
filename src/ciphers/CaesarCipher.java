@@ -1,7 +1,7 @@
 package ciphers;
 
 /**
- * Caeser cipher class.
+ * Caesar cipher class.
  *
  * @author Aleksandar Belic <aleks.belic@gmail.com>
  */

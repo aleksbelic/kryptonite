@@ -9,7 +9,7 @@ import java.util.HashMap;
  */
 public class BaconsCipher {
 
-	// substitution map, has different values for verion 1 and 2
+	// substitution map, has different values for version 1 and 2
 	private HashMap<Character, String> alphabetMap = new HashMap<>();
 
 	public BaconsCipher(String version) {
