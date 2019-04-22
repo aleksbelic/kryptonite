@@ -43,7 +43,7 @@ public class PortaCipher {
 		plaintext = plaintext.replaceAll("\\s+", "");
 
 		String alphabet = Constants.ALPHABET_EN;
-		StringBuilder plaintextStringBuilder = new StringBuilder();
+		StringBuilder ciphertextStringBuilder = new StringBuilder();
 
 		for (int i = 0; i < plaintext.length(); i++) {
 			char currentChar = plaintext.toUpperCase().charAt(i);
@@ -61,11 +61,11 @@ public class PortaCipher {
 					throw new IllegalArgumentException("ERROR: Plaintext & ciphertext can contain only English alphabet letters, no numbers or special characters allowed.");
 				} else {
 					int substitutionCharIndex = (currentCharPositionInKeywordLetterGroupAlphabet + 13) % keywordLetterGroupAlphabet.length();
-					plaintextStringBuilder.append(keywordLetterGroupAlphabet.charAt(substitutionCharIndex));
+					ciphertextStringBuilder.append(keywordLetterGroupAlphabet.charAt(substitutionCharIndex));
 				}
 			}
 		}
-		return plaintextStringBuilder.toString();
+		return ciphertextStringBuilder.toString();
 
 	}
 
