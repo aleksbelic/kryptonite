@@ -15,7 +15,7 @@ public class MorseCipherTest {
 	private MorseCipher mc = new MorseCipher();
 
 	@Test
-	void encodeTest() {
+	void testEncode() {
 		assertEquals(mc.encode(""), ""); // empty string
 		assertEquals(mc.encode(" "), ""); // trim
 		assertEquals(mc.encode(" a"), ".-"); // trim left
@@ -33,8 +33,28 @@ public class MorseCipherTest {
 	}
 
 	@Test
-	void decodeTest() { // TODO
+	void testDecode() {
+		assertEquals(mc.decode(".-"), "A");
+		assertEquals(mc.decode(" .-"), "A"); // trim left
+		assertEquals(mc.decode(".- "), "A"); // trim right
+		assertEquals(mc.decode(".-        -..."), "AB"); // regex
+		assertEquals(mc.decode(".- -..."), "AB");
+		assertEquals(mc.decode(".-/-..."), "A B");
+		assertEquals(mc.decode(".... . .-.. .-.. ---/.-- --- .-. .-.. -.."), "HELLO WORLD");
 
+		// ciphertext exceptions
+		assertThrows(IllegalArgumentException.class, () -> {
+			mc.decode(""); // empty string
+		});
+		assertThrows(IllegalArgumentException.class, () -> {
+			mc.decode(" "); // trim
+		});
+		assertThrows(IllegalArgumentException.class, () -> {
+			mc.decode(".- ................."); // letter unknown
+		});
+		assertThrows(IllegalArgumentException.class, () -> {
+			mc.decode(".- a/.-"); // letter unknown
+		});
 	}
 
 }
