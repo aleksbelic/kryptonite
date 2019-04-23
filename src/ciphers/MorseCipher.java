@@ -67,6 +67,7 @@ public class MorseCipher {
 		for (int i = 0; i < words.length; i++) {
 
 			String currentWord = words[i];
+			if (currentWord.isEmpty()) continue; // ignore empty string
 			String[] lettersInCurrentWord = currentWord.split(" ");
 
 			for (String letterInCurrentWord : lettersInCurrentWord) {
