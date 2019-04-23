@@ -8,5 +8,6 @@ Ciphers:
 - Morse
 - Porta
 - Rail Fence
+- ROT13
 - Scytale
 - Vigenère
