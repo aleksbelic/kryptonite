@@ -10,6 +10,7 @@ public class PolybiusSquareCipherTest {
 
 	PolybiusSquareCipher psc = new PolybiusSquareCipher();
 
+	@Test
 	void testEncryption() {
 		assertEquals(psc.encode(""), "");
 		assertEquals(psc.encode(" abc"), "111213"); // trim
