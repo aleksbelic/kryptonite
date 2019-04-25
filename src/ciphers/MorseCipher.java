@@ -25,7 +25,7 @@ public class MorseCipher {
 	/**
 	 * Encodes plaintext.
 	 *
-	 * @param plaintext plaintext to encode
+	 * @param plaintext string to encode.
 	 * @return ciphertext
 	 */
 	public String encode(String plaintext) {
@@ -34,18 +34,20 @@ public class MorseCipher {
 		plaintext = plaintext.trim().replaceAll("\\s\\s+", " ").toUpperCase();
 		StringBuilder ciphertextStringBuilder = new StringBuilder();
 
-		for (int i = 0; i < plaintext.length(); i++) {
-			char currentChar = plaintext.charAt(i);
-			if (currentChar == ' ') {
-				ciphertextStringBuilder.append("/");
-			} else if (subsitutionMap.get(currentChar) == null) {
-				throw new IllegalArgumentException("ERROR: plaintext contains unsupported character: " + currentChar);
-			} else {
-				ciphertextStringBuilder.append(subsitutionMap.get(currentChar));
-				if (i != (plaintext.length() - 1) && plaintext.charAt(i + 1) != ' ') {
-					ciphertextStringBuilder.append(" ");
+		String[] words =  plaintext.split(" ");
+		for (int wordIndex = 0; wordIndex < words.length; wordIndex++) {
+			for (int letterIndex = 0; letterIndex < words[wordIndex].length(); letterIndex++) {
+				char currentChar = words[wordIndex].charAt(letterIndex);
+				if (subsitutionMap.get(currentChar) == null)
+					throw new IllegalArgumentException("ERROR: plaintext contains unsupported character: " + currentChar);
+				else {
+					ciphertextStringBuilder.append(subsitutionMap.get(currentChar));
+					if (letterIndex != words[wordIndex].length() - 1)
+						ciphertextStringBuilder.append(" ");
 				}
 			}
+			if (wordIndex != words.length - 1)
+				ciphertextStringBuilder.append("/");
 		}
 
 		return ciphertextStringBuilder.toString();
