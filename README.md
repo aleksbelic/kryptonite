@@ -6,6 +6,7 @@ Ciphers:
 - Caesar
 - M-94 (a.k.a. CSP-488 for Navy)
 - Morse
+- Polybius square
 - Porta
 - Rail Fence
 - ROT13
