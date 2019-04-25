@@ -65,7 +65,7 @@ public class PolybiusSquareCipher {
 					if (letterFound) break;
 					for (int letterIndex = 0; letterIndex < this.substitutionSquare[row][column].length; letterIndex++) {
 						if (currentChar == this.substitutionSquare[row][column][letterIndex]) {
-							ciphertextStringBuilder.append(Integer.toString(row + 1) + Integer.toString(column + 1));
+							ciphertextStringBuilder.append(Integer.toString(row + 1)).append(Integer.toString(column + 1));
 							letterFound = true;
 							break;
 						}
@@ -87,7 +87,40 @@ public class PolybiusSquareCipher {
 	 * @return plaintext
 	 */
 	public String decode(String ciphertext) {
-		return ""; // TODO
+
+		//trim, remove excess whitespace
+		ciphertext = ciphertext.trim().replaceAll("\\s+", " ");
+		// only numbers and whitespace allowed
+		if (!ciphertext.matches("^[\\d ]*$"))
+			throw new IllegalArgumentException("ERROR: ciphertext may contain only numbers and whitespace.");
+
+		StringBuilder plaintextStringBuilder = new StringBuilder();
+
+		String[] words = ciphertext.split(" ");
+		for (int i = 0; i < words.length; i++) {
+
+			// word length is odd number
+			if (words[i].length() % 2 != 0)
+				throw new IllegalArgumentException("ERROR: each word must contain even count of numbers.");
+
+			for (int letterIndex = 0; letterIndex < (words[i].length() / 2); letterIndex++) {
+				String currentChar = words[i].substring(letterIndex * 2, (letterIndex * 2) + 2);
+
+				int substitutionRow = Integer.parseInt(currentChar.substring(0, 1)) - 1;
+				int substitutionColumn = Integer.parseInt(currentChar.substring(1, 2)) - 1;
+				try {
+					char substitutionChar = this.substitutionSquare[substitutionRow][substitutionColumn][0];
+					plaintextStringBuilder.append(substitutionChar);
+				} catch (ArrayIndexOutOfBoundsException e) {
+					throw new IllegalArgumentException("ERROR: substitution char not found: " + currentChar);
+				}
+			}
+			// not last word
+			if (i != words.length - 1)
+				plaintextStringBuilder.append(" ");
+		}
+
+		return plaintextStringBuilder.toString();
 	}
 
 	/**
