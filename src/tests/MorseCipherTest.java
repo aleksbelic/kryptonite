@@ -23,6 +23,7 @@ public class MorseCipherTest {
 		assertEquals(mc.encode("a b"), ".-/-...");
 		assertEquals(mc.encode("a  b"), ".-/-..."); // regex
 		assertEquals(mc.encode("a   b"), ".-/-..."); // regex
+		assertEquals(mc.encode("abc"), ".- -... -.-.");
 		assertEquals(mc.encode("abcdefghigklmnopqrstuvwxyz1234567890.,?'!/()&:;=+-_\"$@"), ".- -... -.-. -.. . ..-. --. .... .. --. -.- .-.. -- -. --- .--. --.- .-. ... - ..- ...- .-- -..- -.-- --.. .---- ..--- ...-- ....- ..... -.... --... ---.. ----. ----- .-.-.- --..-- ..--.. .----. -.-.-- -..-. -.--. -.--.- .-... ---... -.-.-. -...- .-.-. -....- ..--.- .-..-. ...-..- .--.-.");
 		assertEquals(mc.encode("ATTACK AT DAWN!"), ".- - - .- -.-. -.-/.- -/-.. .- .-- -. -.-.--");
 
